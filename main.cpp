@@ -134,6 +134,11 @@ namespace Shop
         void displayWelcomeScreen();
     };
 
+    void Shop::mainMenu() {
+        cout << "============================================================" << endl;
+        cout << "WELCOME TO " << name << " MOTORBIKE RENTAL SHOP" << endl;
+        cout << "============================================================" << endl;
+    }
 }
 
 namespace Motorbike{
