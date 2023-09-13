@@ -118,7 +118,6 @@ namespace Shop
     {
     private:
         string name;
-        vector<Motorbike::Motorbike> motorbikes;
 
     public:
         // constructor
@@ -128,26 +127,19 @@ namespace Shop
         {
             name.clear();
         }
-        void appMenu();
+        void mainMenu();
         void guestMenu();
         void memberMenu();
         void adminMenu();
         void displayWelcomeScreen();
     };
 
-    void Shop::appMenu(){
-        cout << "=========================================================" << endl;
-        cout << "WELCOME TO " << name << " MOTORBIKE RENTAL SHOP" << endl;
-        cout << "=========================================================" << endl;
-    }
 }
 
-namespace Motorbike
-{
-    class Motorbike
-    {
+namespace Motorbike{
+    class Motorbike{
     private:
-        string names;
+        string name;
         string model;
         int engineSize;
         string transModel;
@@ -157,8 +149,38 @@ namespace Motorbike
         int retailperDay;
         int minrentRating;
         int motorbikeRating;
-
+        string city;
     public:
+        //Motorbike constructor
+        Motorbike(const string &name, const string &model, const int &engineSize,
+        const string &transModel, const int &yearMade, const string &description,
+        const int &consumePoint, const int &retailperDay, const int &minrentRating,
+        const int &motorbikeRating, const string &city)
+        : name(name), model(model), engineSize(engineSize), transModel(transModel),
+        yearMade(yearMade), description(description), consumePoint(consumePoint),
+        retailperDay(retailperDay), minrentRating(minrentRating), motorbikeRating(motorbikeRating), city(city){}
+
+        //View motorbike models
+        void viewmotorInfo(){
+            cout << "Motorbike Name: " << name << endl;
+            cout << "Motorbike Model: " << model << endl;
+            cout << "Engine Size: " << engineSize << endl;
+            cout << "Transmission Model: " << transModel << endl;
+            cout << "Production Year: " << yearMade << endl;
+            cout << "Description: " << description << endl;
+            cout << "Point Cost: " << consumePoint << endl;
+            cout << "Rating: " << motorbikeRating << endl;
+            cout << "Location: " << city << endl;
+        }
+
+        void listforRent(){
+
+        }
+
+        void unlist(){
+
+        }
+
     };
 };
 
