@@ -149,15 +149,16 @@ namespace Motorbike{
         int retailperDay;
         int minrentRating;
         int motorbikeRating;
+        string city;
     public:
         //Motorbike constructor
         Motorbike(const string &name, const string &model, const int &engineSize,
         const string &transModel, const int &yearMade, const string &description,
         const int &consumePoint, const int &retailperDay, const int &minrentRating,
-        const int &motorbikeRating)
+        const int &motorbikeRating, const string &city)
         : name(name), model(model), engineSize(engineSize), transModel(transModel),
         yearMade(yearMade), description(description), consumePOint(consumePoint),
-        retailperDay(retailperDay), minrentRating(minrentRating), motorbikeRating(motorbikeRating){}
+        retailperDay(retailperDay), minrentRating(minrentRating), motorbikeRating(motorbikeRating), city(city){}
 
         //View motorbike models
         void viewmotorInfo(){
@@ -169,6 +170,7 @@ namespace Motorbike{
             cout << "Description: " << description << endl;
             cout << "Point Cost: " << consumePoint << endl;
             cout << "Rating: " << motorbikeRating << endl;
+            cout << "Location: " << city << endl;
         }
 
         void listforRent(){
@@ -178,7 +180,7 @@ namespace Motorbike{
         void unlist(){
 
         }
-        
+
     };
 };
 
