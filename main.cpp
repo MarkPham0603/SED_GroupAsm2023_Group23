@@ -118,7 +118,7 @@ namespace Shop
     {
     private:
         string name;
-        vector<Motorbike> motorbikes;
+        vector<Motorbike::Motorbike> motorbikes;
 
     public:
         // constructor
@@ -149,7 +149,7 @@ namespace Motorbike
     private:
         string names;
         string model;
-        string engineSize;
+        int engineSize;
         string transModel;
         int yearMade;
         string description;
