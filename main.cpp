@@ -136,6 +136,24 @@ namespace Shop
 
 }
 
+namespace Motorbike{
+    class Motorbike{
+    private:
+        string names;
+        string model;
+        string engineSize;
+        string transModel;
+        int yearMade;
+        string description;
+        int consumePoint;
+        int retailperDay;
+        int minrentRating;
+        int motorbikeRating;
+    public:
+        
+    };
+};
+
 namespace utility
 {
     class utility
