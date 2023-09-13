@@ -118,6 +118,7 @@ namespace Shop
     {
     private:
         string name;
+        vector<Motorbike> motorbikes;
 
     public:
         // constructor
@@ -127,17 +128,24 @@ namespace Shop
         {
             name.clear();
         }
-        void mainMenu();
+        void appMenu();
         void guestMenu();
         void memberMenu();
         void adminMenu();
         void displayWelcomeScreen();
     };
 
+    void Shop::appMenu(){
+        cout << "=========================================================" << endl;
+        cout << "WELCOME TO " << name << " MOTORBIKE RENTAL SHOP" << endl;
+        cout << "=========================================================" << endl;
+    }
 }
 
-namespace Motorbike{
-    class Motorbike{
+namespace Motorbike
+{
+    class Motorbike
+    {
     private:
         string names;
         string model;
@@ -149,8 +157,8 @@ namespace Motorbike{
         int retailperDay;
         int minrentRating;
         int motorbikeRating;
+
     public:
-        
     };
 };
 
