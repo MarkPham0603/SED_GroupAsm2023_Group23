@@ -17,15 +17,16 @@ namespace Member
         string driverLicenseNumber;
         string expiryDate;
         int creditPoints;
+        Motorbike motorbike;
 
     public:
         // Member constructor
         Member(const string &username, const string &fullName, const string &phoneNumber,
                const string &idType, const string &idPassportNumber,
-               const string &driverLicenseNumber, const string &expiryDate)
+               const string &driverLicenseNumber, const string &expiryDate,const Motorbike& motorbike)
             : username(username), fullName(fullName), phoneNumber(phoneNumber),
               idType(idType), idPassportNumber(idPassportNumber),
-              driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate), creditPoints(20)
+              driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate), creditPoints(20), motorbike(motorbike)
         {
         }
 
@@ -40,8 +41,9 @@ namespace Member
             cout << "Driver's License Number: " << driverLicenseNumber << endl;
             cout << "Expiry Date: " << expiryDate << endl;
             cout << "Credit Points: " << creditPoints << endl;
+            motorbike.viewmotorInfo();
         }
-
+        
         void listMotorbikeForRent()
         {
         }
