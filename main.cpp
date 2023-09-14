@@ -17,16 +17,17 @@ namespace Member
         string driverLicenseNumber;
         string expiryDate;
         int creditPoints;
-        Motorbike motorbike;
+        Motorbike::Motorbike motorbike;
+        bool hasMotorbike;
 
     public:
         // Member constructor
         Member(const string &username, const string &fullName, const string &phoneNumber,
                const string &idType, const string &idPassportNumber,
-               const string &driverLicenseNumber, const string &expiryDate,const Motorbike& motorbike)
+               const string &driverLicenseNumber, const string &expiryDate)
             : username(username), fullName(fullName), phoneNumber(phoneNumber),
               idType(idType), idPassportNumber(idPassportNumber),
-              driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate), creditPoints(20), motorbike(motorbike)
+              driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate), creditPoints(20), motorbike(motorbike),hasMotorbike(false)
         {
         }
 
@@ -44,12 +45,18 @@ namespace Member
             motorbike.viewmotorInfo();
         }
         
-        void listMotorbikeForRent()
-        {
+        void listMotorbikeForRent() {
+                if (!hasMotorbike) {
+                cout << "You don't have a motorbike to list for rent." << endl;
+            } else {
+                cout << "Your Motorbike for Rent:" << endl;
+                motorbike.viewmotorInfo();
+            }
         }
 
         void unlistMotorbike()
         {
+
         }
 
         void requestToRentMotorbike()
@@ -68,6 +75,7 @@ namespace Member
         static Member registerAsMember()
         {
             string username, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate;
+            
 
             cout << "Enter Username: ";
             cin >> username;
@@ -84,6 +92,7 @@ namespace Member
             cin >> driverLicenseNumber;
             cout << "Enter Expiry Date: ";
             cin >> expiryDate;
+            
 
             Member newMember(username, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate);
             cout << "Registration successful. Welcome, " << username << "!" << endl;
@@ -168,7 +177,7 @@ namespace Shop
     }
 }
 
-namespace Motorbike{
+namespace Motorbike {
     class Motorbike{
     private:
         string name;
@@ -214,7 +223,7 @@ namespace Motorbike{
         }
 
     };
-};
+}
 
 namespace utility
 {
