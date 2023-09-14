@@ -56,7 +56,14 @@ namespace Member
 
         void unlistMotorbike()
         {
-
+            if (!hasMotorbike) {
+                cout << "You don't have a motorbike listed for rent." << endl;
+            } else {
+                cout << "Unlisting your Motorbike for Rent:" << endl;
+                motorbike.viewmotorInfo(); // Display the details of the motorbike being unlisted
+                hasMotorbike = false; // Mark that the member no longer has a listed motorbike
+                cout << "Your motorbike has been unlisted." << endl;
+            }
         }
 
         void requestToRentMotorbike()
