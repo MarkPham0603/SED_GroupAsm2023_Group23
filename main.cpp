@@ -45,6 +45,7 @@ namespace Member
             motorbike.viewmotorInfo();
         }
         
+        // Show the motor list of the user
         void listMotorbikeForRent() {
                 if (!hasMotorbike) {
                 cout << "You don't have a motorbike to list for rent." << endl;
@@ -54,6 +55,7 @@ namespace Member
             }
         }
 
+        // Hide the motor list of the user
         void unlistMotorbike()
         {
             if (!hasMotorbike) {
@@ -121,11 +123,23 @@ namespace Member
         }
     };
 
-    class Admin
-    {
+    class Admin {
+    private:
+        string username;
+        string password;
+
     public:
-        void viewAllMembers(const vector<Member> &members)
-        {
+        Admin(const string& adminUsername, const string& adminPassword)
+            : username(adminUsername), password(adminPassword) {}
+
+        bool loginAsAdmin(const string& enteredUsername, const string& enteredPassword) {
+            if (enteredUsername == username && enteredPassword == password) {
+                cout << "Admin login successful. Welcome, " << username << "!" << endl;
+                return true;
+            } else {
+                cout << "Admin login failed. Invalid username or password." << endl;
+                return false;
+            }
         }
     };
 }
