@@ -24,9 +24,9 @@ namespace Member
               idType(idType), idPassportNumber(idPassportNumber),
               driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate){};
 
-        static Member registerAsMember()
+        Member registerAsMember()
         {
-            string username, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate;
+            string username;
 
             cout << "Enter Username: ";
             cin >> username;
@@ -35,6 +35,12 @@ namespace Member
             cout << "Registration successful. Welcome, " << username << "!" << endl;
             return newMember;
         }
+
+        void viewAllMotorbikeForRent(Shop::Shop shop){
+            shop.viewAllMotorbikeForRent();
+        }
+
+        friend Member;
     };
 
     class Member : public Guest
@@ -53,6 +59,29 @@ namespace Member
                const string &username, int creditPoints = 20)
             : Guest(fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate),
               username(username), creditPoints(20), motorbike(motorbike), hasMotorbike(false){};
+    
+        void viewInformation()
+        {
+            cout << "Username: " << username << endl;
+            cout << "Full Name: " << fullName << endl;
+            cout << "Phone Number: " << phoneNumber << endl;
+            cout << "ID Type: " << idType << endl;
+            cout << "ID/Passport Number: " << idPassportNumber << endl;
+            cout << "Driver's License Number: " << driverLicenseNumber << endl;
+            cout << "Expiry Date: " << expiryDate << endl;
+            cout << "Credit Points: " << creditPoints << endl;
+            motorbike.viewmotorInfo();
+        }
+
+        void listMotorbikeForRent() {
+                if (!hasMotorbike) {
+                cout << "You don't have a motorbike to list for rent." << endl;
+            } else {
+                cout << "Your Motorbike for Rent:" << endl;
+                motorbike.viewmotorInfo();
+            }
+        }
+            
     };
     /*class Member
     {
@@ -199,7 +228,7 @@ namespace Shop
     {
     private:
         string name;
-
+        vector<Motorbike::Motorbike> listOfMotorbikeForRent;
     public:
         // constructor
         Shop(string name = "") : name(name){};
@@ -213,6 +242,7 @@ namespace Shop
         void memberMenu();
         void adminMenu();
         void displayWelcomeScreen();
+        void viewAllMotorbikeForRent();
     };
 
     void Shop::mainMenu()
