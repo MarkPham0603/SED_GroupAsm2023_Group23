@@ -6,7 +6,55 @@ using namespace std;
 
 namespace Member
 {
-    class Member
+    class Guest
+    {
+        string fullName;
+        string phoneNumber;
+        string idType;
+        string idPassportNumber;
+        string driverLicenseNumber;
+        string expiryDate;
+
+    public:
+        // Guest class constructor
+        Guest(const string &fullName, const string &phoneNumber,
+              const string &idType, const string &idPassportNumber,
+              const string &driverLicenseNumber, const string &expiryDate)
+            : fullName(fullName), phoneNumber(phoneNumber),
+              idType(idType), idPassportNumber(idPassportNumber),
+              driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate){};
+
+        static Member registerAsMember()
+        {
+            string username, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate;
+
+            cout << "Enter Username: ";
+            cin >> username;
+
+            Member newMember(username, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate);
+            cout << "Registration successful. Welcome, " << username << "!" << endl;
+            return newMember;
+        }
+    };
+
+    class Member : public Guest
+    {
+    private:
+        string username;
+        int creditPoints;
+        Motorbike::Motorbike motorbike;
+        bool hasMotorbike;
+
+    public:
+        // Member constructor
+        Member(const string &fullName, const string &phoneNumber,
+               const string &idType, const string &idPassportNumber,
+               const string &driverLicenseNumber, const string &expiryDate,
+               const string &username, int creditPoints = 20)
+            : Guest(fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate),
+              username(username), creditPoints(20), motorbike(motorbike), hasMotorbike(false){};
+    };
+    /*class Member
     {
     private:
         string username;
@@ -44,7 +92,7 @@ namespace Member
             cout << "Credit Points: " << creditPoints << endl;
             motorbike.viewmotorInfo();
         }
-        
+
         // Show the motor list of the user
         void listMotorbikeForRent() {
                 if (!hasMotorbike) {
@@ -84,7 +132,7 @@ namespace Member
         static Member registerAsMember()
         {
             string username, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate;
-            
+
 
             cout << "Enter Username: ";
             cin >> username;
@@ -101,7 +149,7 @@ namespace Member
             cin >> driverLicenseNumber;
             cout << "Enter Expiry Date: ";
             cin >> expiryDate;
-            
+
 
             Member newMember(username, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate);
             cout << "Registration successful. Welcome, " << username << "!" << endl;
@@ -142,6 +190,7 @@ namespace Member
             }
         }
     };
+    */
 }
 
 namespace Shop
@@ -166,7 +215,8 @@ namespace Shop
         void displayWelcomeScreen();
     };
 
-    void Shop::mainMenu() {
+    void Shop::mainMenu()
+    {
         cout << "============================================================" << endl;
         cout << "EEET2482/COSC2082 GROUP ASSIGNMENT" << endl;
         cout << "MOTORBIKE RENTAL APPLICATION" << endl;
@@ -184,22 +234,25 @@ namespace Shop
         cout << "\nPlease enter your choice: ";
     }
 
-    void Shop::memberMenu() {
+    void Shop::memberMenu()
+    {
         cout << "============================================================" << endl;
         cout << "Enter your username:";
         cout << "Enter your password:";
-
     }
 
-        void Shop::displayWelcomeScreen() {
+    void Shop::displayWelcomeScreen()
+    {
         cout << "============================================================" << endl;
         cout << "WELCOME TO " << name << " MOTORBIKE RENTAL SHOP" << endl;
         cout << "============================================================" << endl;
     }
 }
 
-namespace Motorbike {
-    class Motorbike{
+namespace Motorbike
+{
+    class Motorbike
+    {
     private:
         string name;
         string model;
@@ -212,18 +265,20 @@ namespace Motorbike {
         int minrentRating;
         int motorbikeRating;
         string city;
-    public:
-        //Motorbike constructor
-        Motorbike(const string &name, const string &model, const int &engineSize,
-        const string &transModel, const int &yearMade, const string &description,
-        const int &consumePoint, const int &retailperDay, const int &minrentRating,
-        const int &motorbikeRating, const string &city)
-        : name(name), model(model), engineSize(engineSize), transModel(transModel),
-        yearMade(yearMade), description(description), consumePoint(consumePoint),
-        retailperDay(retailperDay), minrentRating(minrentRating), motorbikeRating(motorbikeRating), city(city){}
 
-        //View motorbike models
-        void viewmotorInfo(){
+    public:
+        // Motorbike constructor
+        Motorbike(const string &name, const string &model, const int &engineSize,
+                  const string &transModel, const int &yearMade, const string &description,
+                  const int &consumePoint, const int &retailperDay, const int &minrentRating,
+                  const int &motorbikeRating, const string &city)
+            : name(name), model(model), engineSize(engineSize), transModel(transModel),
+              yearMade(yearMade), description(description), consumePoint(consumePoint),
+              retailperDay(retailperDay), minrentRating(minrentRating), motorbikeRating(motorbikeRating), city(city) {}
+
+        // View motorbike models
+        void viewmotorInfo()
+        {
             cout << "Motorbike Name: " << name << endl;
             cout << "Motorbike Model: " << model << endl;
             cout << "Engine Size: " << engineSize << endl;
@@ -234,15 +289,6 @@ namespace Motorbike {
             cout << "Rating: " << motorbikeRating << endl;
             cout << "Location: " << city << endl;
         }
-
-        void listforRent(){
-
-        }
-
-        void unlist(){
-
-        }
-
     };
 }
 
