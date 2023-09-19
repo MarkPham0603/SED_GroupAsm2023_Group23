@@ -24,10 +24,12 @@ namespace Member
               idType(idType), idPassportNumber(idPassportNumber),
               driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate){};
 
+        // User enter some personal information for register as Member
         void registerAsMember(Admin admin)
         {
             string username;
 
+            // User input
             cout << "Set your username: ";
             getline(cin, username);
             cout << "Enter full name: ";
@@ -43,6 +45,7 @@ namespace Member
             cout << "Enter expiry date for driver license: ";
             getline(cin, expiryDate);
 
+            // Create a new Member object that contain the user input
             Member newMember(username, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate);
             admin.addMemberToList(newMember);
             cout << "Registration successful. Welcome, " << username << "!" << endl;
