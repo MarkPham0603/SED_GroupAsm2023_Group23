@@ -12,7 +12,7 @@ void Motorbike::viewmotorInfo()
     cout << "Transmission Model: " << transModel << endl;
     cout << "Production Year: " << yearMade << endl;
     cout << "Description: " << description << endl;
-    cout << "Point Cost: " << consumePoint << endl;
+    cout << "Point Cost: " << pointCost << endl;
     cout << "Rating: " << motorbikeRating << endl;
     cout << "Location: " << city << endl;
 }

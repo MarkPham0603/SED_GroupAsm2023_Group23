@@ -4,16 +4,19 @@
 #include "motorbike.h"
 using namespace std;
 
+// Define addMemberToList
 void Database::addMemberToList(Member &new_member)
 {
     listOfMember.push_back(new_member);
 }
 
+// Define addMotorbikeToList
 void Database::addMotorbikeToList(Motorbike &new_motorbike)
 {
     listOfMotorbikeForRent.push_back(new_motorbike);
 }
 
+// Define viewAllMotorbikeForGuest
 void Database::viewAllMotorbikeForGuest()
 {
     if (listOfMotorbikeForRent.empty())

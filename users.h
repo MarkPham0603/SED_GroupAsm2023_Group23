@@ -18,9 +18,9 @@ private:
 
 public:
     // Guest class constructor
-    Guest(string fullName = "", string phoneNumber = "",
-          string idType = "", string idPassportNumber = "",
-          string driverLicenseNumber = "", string expiryDate = "")
+    Guest(const string &fullName = "", const string &phoneNumber = "",
+          const string &idType = "", const string &idPassportNumber = "",
+          const string &driverLicenseNumber = "", const string &expiryDate = "")
         : fullName(fullName), phoneNumber(phoneNumber),
           idType(idType), idPassportNumber(idPassportNumber),
           driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate){};
@@ -35,61 +35,22 @@ class Member : public Guest
 {
 private:
     string username;
+    string password;
     int creditPoints;
     Motorbike motorbike;
     bool hasMotorbike;
 
 public:
-    // Member constructor
-    Member(const string &fullName, const string &phoneNumber,
-           const string &idType, const string &idPassportNumber,
-           const string &driverLicenseNumber, const string &expiryDate,
-           const string &username, int creditPoints = 20)
-        : Guest(fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate),
-          username(username), creditPoints(20), motorbike(motorbike), hasMotorbike(false){};
+    // Member class constructor
+    Member(const string &username = "", const string &password = "", const int creditPoints = 0,
+           const string &fullName = "", const string &phoneNumber = "", const string &idType = "", const string &idPassportNumber = "",
+           const string &driverLicenseNumber = "", const string &expiryDate = "")
+        : username(username), password(password), Guest(fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate),
+          creditPoints(creditPoints), motorbike(), hasMotorbike(false){};
 
-    void viewInformation()
-    {
-        cout << "Username: " << username << endl;
-        cout << "Full Name: " << fullName << endl;
-        cout << "Phone Number: " << phoneNumber << endl;
-        cout << "ID Type: " << idType << endl;
-        cout << "ID/Passport Number: " << idPassportNumber << endl;
-        cout << "Driver's License Number: " << driverLicenseNumber << endl;
-        cout << "Expiry Date: " << expiryDate << endl;
-        cout << "Credit Points: " << creditPoints << endl;
-        motorbike.viewmotorInfo();
-    }
-
-    void listMotorbikeForRent()
-    {
-        if (!hasMotorbike)
-        {
-            cout << "You don't have a motorbike to list for rent." << endl;
-        }
-        else
-        {
-            cout << "Your Motorbike for Rent:" << endl;
-            motorbike.viewmotorInfo();
-        }
-    }
-
-    void unlistMotorbike()
-    {
-        if (!hasMotorbike)
-        {
-            cout << "You don't have a motorbike listed for rent." << endl;
-        }
-        else
-        {
-            cout << "Unlisting your Motorbike for Rent:" << endl;
-            motorbike.viewmotorInfo(); // Display the details of the motorbike being unlisted
-            hasMotorbike = false;      // Mark that the member no longer has a listed motorbike
-            cout << "Your motorbike has been unlisted." << endl;
-        }
-    }
-
-    friend Guest;
+    void viewInformation(){};
+    void listMotorbikeForRent(){};
+    void unlistMotorbike(){};
 };
 
 class Admin
@@ -99,6 +60,7 @@ private:
     string password;
 
 public:
+    // Admin class constructor
     Admin(const string adminUsername, string adminPassword)
         : username(adminUsername), password(adminPassword){};
 };

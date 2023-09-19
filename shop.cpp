@@ -4,7 +4,7 @@
 #include "shop.h"
 using namespace std;
 
-void Shop::mainMenu()
+void Shop::startScreen()
 {
     cout << "============================================================" << endl;
     cout << "EEET2482/COSC2082 GROUP ASSIGNMENT" << endl;
@@ -15,24 +15,41 @@ void Shop::mainMenu()
     cout << "s3929256, Student Name: Pham Minh Hoa" << endl;
     cout << "s3938309, Student Name: Nguyen Dinh Quoc Bao" << endl;
     cout << "============================================================" << endl;
+}
+
+void Shop::loginMenu()
+{
+    int user_choice = 0;
+    bool login_success = false;
     cout << "============================================================" << endl;
     cout << "Sign in as: " << endl;
     cout << "1. Member" << endl;
     cout << "2. Admin" << endl;
     cout << "3. Guest" << endl;
     cout << "\nPlease enter your choice: ";
-}
 
-void Shop::memberMenu()
-{
-    cout << "============================================================" << endl;
-    cout << "Enter your username:";
-    cout << "Enter your password:";
-}
-
-void Shop::displayWelcomeScreen()
-{
-    cout << "============================================================" << endl;
-    cout << "WELCOME TO " << name << " MOTORBIKE RENTAL SHOP" << endl;
-    cout << "============================================================" << endl;
+    while (login_success == false)
+    {
+        cin >> user_choice;
+        switch (user_choice)
+        {
+        case 1:
+            cout << "============================================================" << endl;
+            cout << "Enter your username:";
+            cout << "Enter your password:";
+            break;
+        case 2:
+            cout << "============================================================" << endl;
+            cout << "Enter your username:";
+            cout << "Enter your password:";
+            break;
+        case 3:
+            cout << "Login successfully as Guest.";
+            break;
+        default:
+            cout << "============================================================" << endl;
+            cout << "Invalid choice! Please enter your choice again (a number from 1 to 3): ";
+            break;
+        };
+    }
 }

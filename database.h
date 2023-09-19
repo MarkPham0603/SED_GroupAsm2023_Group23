@@ -14,6 +14,7 @@ private:
     vector<Motorbike> listOfMotorbikeForRent;
 
 public:
+    //Database functions declarations
     void addMemberToList(Member &new_member);
     void addMotorbikeToList(Motorbike &new_motorbike);
     void viewAllMotorbikeForGuest();

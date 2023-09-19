@@ -18,13 +18,12 @@ public:
     {
         name.clear();
     }
-    void mainMenu();
-    void guestMenu();
-    void memberMenu();
-    void adminMenu();
-    void displayWelcomeScreen();
-    void viewAllMotorbikeForRent();
-    void viewAllMotorbikeForGuest();
+    void startScreen();
+    void loginMenu();
+    void memberLogin();
+    void adminLogin();
+    void guestLogin();
+    
 };
 
 #endif

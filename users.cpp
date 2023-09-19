@@ -9,28 +9,33 @@ using namespace std;
 // User enter some personal information for register as Member
 void Guest::registerAsMember(Database &database)
 {
-    string username;
+    string username, password;
+    int choice = 0;
+    bool confirm = false;
 
-    // User input
-    cout << "Set your username: ";
-    getline(cin, username);
-    cout << "Enter full name: ";
-    getline(cin, fullName);
-    cout << "Enter phone number: ";
-    getline(cin, phoneNumber);
-    cout << "Enter type of id: ";
-    getline(cin, idType);
-    cout << "Enter id number: ";
-    getline(cin, idPassportNumber);
-    cout << "Enter driver license number: ";
-    getline(cin, driverLicenseNumber);
-    cout << "Enter expiry date for driver license: ";
-    getline(cin, expiryDate);
+    cout << "============================================================" << endl;
+    while (confirm == false)
+    {
+        // Define username and password using user input
+        cout << "Set your username: ";
+        getline(cin, username);
+        cout << "Set your password: ";
+        getline(cin, password);
+
+        cout << "\n\nUsername: " << username;
+        cout << "\nPassword: " << password;
+        cout << "\n\nIs this correct? (1 for yes, 0 for no): ";
+        cin >> choice;
+        if (choice == 1)
+        {
+            cout << "Registration successful. Welcome, " << username << "!" << endl;
+            confirm = true;
+        }
+    }
 
     // Create a new Member object that contain the user input
-    Member newMember(username, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate);
+    Member newMember(username, password, 20, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate);
     database.addMemberToList(newMember);
-    cout << "Registration successful. Welcome, " << username << "!" << endl;
 }
 
 void Guest::viewAllMotorbikeForGuest(Database &database)
@@ -41,7 +46,9 @@ void Guest::viewAllMotorbikeForGuest(Database &database)
 // Define Member class functions
 void Member::viewInformation()
 {
+    cout << "============================================================" << endl;
     cout << "Username: " << username << endl;
+    cout << "Password: " << password << endl;
     cout << "Full Name: " << fullName << endl;
     cout << "Phone Number: " << phoneNumber << endl;
     cout << "ID Type: " << idType << endl;
@@ -79,4 +86,3 @@ void Member::unlistMotorbike()
         cout << "Your motorbike has been unlisted." << endl;
     }
 }
-
