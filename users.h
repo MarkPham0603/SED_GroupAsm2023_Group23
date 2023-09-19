@@ -1,7 +1,7 @@
-#ifndef HEADER_FILE_NAME
-#define HEADER_FILE_NAME
+#ifndef USER_H
+#define USER_H
 #include <iostream>
-#include <string>s
+#include <string>
 #include "motorbike.h"
 #include "database.h"
 using namespace std;
