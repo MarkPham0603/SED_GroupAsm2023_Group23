@@ -2,18 +2,17 @@
 #define UTILS_H
 #include <iostream>
 #include <string>
+#include <fstream>
+#include "database.h"
 using namespace std;
 
-namespace utility_class
+class Utility
 {
-    class utility
-    {
-    public:
-        void saveDataToFile(string file_name);
-        void loadDataFromFile(string file_name);
-        void checkInput(string input);
-        void error_handling();
-    };
-}
+public:
+    void saveDataToFile(ofstream &ofs, Database &database, string &file_name, string &data_type);
+    void loadDataFromFile(string file_name);
+    void checkInput(string input);
+    void error_handling();
+};
 
 #endif

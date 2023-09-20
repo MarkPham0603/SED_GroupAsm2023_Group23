@@ -2,22 +2,22 @@
 #define DATABASE_H
 #include <iostream>
 #include <vector>
+#include "users.h"
 #include "motorbike.h"
+#include "utils.h"
 using namespace std;
-
-class Member;
 
 class Database
 {
 private:
     vector<Member> listOfMember;
     vector<Motorbike> listOfMotorbikeForRent;
-
 public:
     //Database functions declarations
     void addMemberToList(Member &new_member);
     void addMotorbikeToList(Motorbike &new_motorbike);
     void viewAllMotorbikeForGuest();
+    friend Utility;
 };
 
 #endif

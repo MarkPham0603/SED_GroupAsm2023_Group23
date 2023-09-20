@@ -2,6 +2,8 @@
 #include <vector>
 #include "database.h"
 #include "motorbike.h"
+#include "utils.h"
+#include "users.h"
 using namespace std;
 
 // Define addMemberToList

@@ -9,33 +9,123 @@ using namespace std;
 // User enter some personal information for register as Member
 void Guest::registerAsMember(Database &database)
 {
-    string username, password;
+    string username, password, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate;
+    string model, transMode, description, startTime, endTime, city;
+    int engineSize = 0, yearMade = 0, pointCost = 0, minRentRating = 0;
     int choice = 0;
-    bool confirm = false;
+    bool hasMotorbike = false;
 
     cout << "============================================================" << endl;
-    while (confirm == false)
+    while (choice != 1)
     {
-        // Define username and password using user input
+        // Define credentials and personal information using user input
         cout << "Set your username: ";
         getline(cin, username);
         cout << "Set your password: ";
         getline(cin, password);
+        cout << "Enter your full name: ";
+        getline(cin, fullName);
+        cout << "Enter your phone number: ";
+        getline(cin, phoneNumber);
+        cout << "Enter your id type: ";
+        getline(cin, idType);
+        cout << "Enter your id number: ";
+        getline(cin, idPassportNumber);
+        cout << "Enter your driver license number: ";
+        getline(cin, driverLicenseNumber);
+        cout << "Enter the expiry date for the driver license (dd/mm/yyyy): ";
+        getline(cin, expiryDate);
 
-        cout << "\n\nUsername: " << username;
-        cout << "\nPassword: " << password;
-        cout << "\n\nIs this correct? (1 for yes, 0 for no): ";
+        // Asking user if they have a motorbike available for rent
+        cout << "============================================================" << endl;
+        cout << "Do you have a motorbike to list for rent? (1 for yes, 0 for no): ";
         cin >> choice;
         if (choice == 1)
         {
+            // Define motorbike if user has one
+            cout << "Enter the model: ";
+            getline(cin, model);
+            cout << "Enter the engine size: ";
+            cin >> engineSize;
+            cout << "Enter the transmission mode: ";
+            getline(cin, transMode);
+            cout << "Enter the manufactured year: ";
+            cin >> yearMade;
+            cout << "Enter the description of the motorbike: ";
+            getline(cin, description);
+            cout << "Enter the credit point cost: ";
+            cin >> pointCost;
+            cout << "Enter the minimum rent rating: ";
+            cin >> minRentRating;
+            cout << "Enter the start time for rent: ";
+            getline(cin, startTime);
+            cout << "Enter the end time for rent: ";
+            getline(cin, endTime);
+            cout << "Enter the location: ";
+            getline(cin, city);
+            hasMotorbike = true;
+        }
+
+        // Display user inputs for user to confirm
+        cout << "============================================================" << endl;
+        cout << "Your credentials" << endl;
+        cout << "----------------" << endl;
+        cout << "Username: " << username << endl;
+        cout << "Password: " << password << endl;
+        cout << "============================================================" << endl;
+        cout << "Your personal information" << endl;
+        cout << "-------------------------" << endl;
+        cout << "Full name: " << fullName << endl;
+        cout << "Phone number: " << phoneNumber << endl;
+        cout << "ID type: " << idType << endl;
+        cout << "ID number: " << idPassportNumber << endl;
+        cout << "Driver license number: " << driverLicenseNumber << endl;
+        cout << "Expiry date: " << expiryDate << endl;
+        cout << "============================================================" << endl;
+
+        // Display user inputs for motorbike if they have one
+        if (hasMotorbike)
+        {
+            cout << "Your motorbike information" << endl;
+            cout << "--------------------------" << endl;
+            cout << "Model: " << model << endl;
+            cout << "Engine size: " << engineSize << endl;
+            cout << "Transmission mode: " << transMode << endl;
+            cout << "Manufactured year: " << yearMade << endl;
+            cout << "Description: " << description << endl;
+            cout << "Credit point cost: " << pointCost << endl;
+            cout << "Minimum rent rating: " << minRentRating << endl;
+            cout << "Start time: " << startTime << endl;
+            cout << "End time: " << endTime << endl;
+            cout << "Location: " << city << endl;
+            cout << "============================================================" << endl;
+        }
+
+        cout << "Is this correct? (1 for yes, 0 for no): ";
+        cin >> choice;
+        if (choice == 1)
+        {
+            if (hasMotorbike)
+            {
+                // Create a new Motorbike and use it in the constructor of the new Member object with user inputs and add them to member list
+                Motorbike newMotorbike(model, engineSize, transMode, yearMade, description,
+                                       pointCost, minRentRating, startTime, endTime, city);
+                Member newMember(username, password, fullName, phoneNumber,
+                                 idType, idPassportNumber, driverLicenseNumber, expiryDate, 20, newMotorbike, hasMotorbike);
+                database.addMemberToList(newMember);
+            }
+            else
+            {
+                // Create a new Member object that contain the user input and add them to the member list
+                Member newMember(username, password, fullName, phoneNumber,
+                                 idType, idPassportNumber, driverLicenseNumber, expiryDate, 20);
+                database.addMemberToList(newMember);
+            }
+
+            // Display success message and set flag to exit the loop
             cout << "Registration successful. Welcome, " << username << "!" << endl;
-            confirm = true;
         }
     }
-
-    // Create a new Member object that contain the user input
-    Member newMember(username, password, 20, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate);
-    database.addMemberToList(newMember);
 }
 
 void Guest::viewAllMotorbikeForGuest(Database &database)
@@ -47,8 +137,13 @@ void Guest::viewAllMotorbikeForGuest(Database &database)
 void Member::viewInformation()
 {
     cout << "============================================================" << endl;
+    cout << "Your credentials" << endl;
+    cout << "----------------" << endl;
     cout << "Username: " << username << endl;
     cout << "Password: " << password << endl;
+    cout << "============================================================" << endl;
+    cout << "Your personal information" << endl;
+    cout << "-------------------------" << endl;
     cout << "Full Name: " << fullName << endl;
     cout << "Phone Number: " << phoneNumber << endl;
     cout << "ID Type: " << idType << endl;
@@ -56,19 +151,75 @@ void Member::viewInformation()
     cout << "Driver's License Number: " << driverLicenseNumber << endl;
     cout << "Expiry Date: " << expiryDate << endl;
     cout << "Credit Points: " << creditPoints << endl;
-    motorbike.viewmotorInfo();
+    if (hasMotorbike)
+    {
+        cout << "============================================================" << endl;
+        cout << "Your motorbike information" << endl;
+        cout << "--------------------------" << endl;
+        motorbike.viewmotorInfo();
+    }
 }
 
-void Member::listMotorbikeForRent()
+void Member::listMotorbikeForRent(Database database)
 {
-    if (!hasMotorbike)
+    if (hasMotorbike)
     {
-        cout << "You don't have a motorbike to list for rent." << endl;
+        cout << "You already have a motorbike listed for rent." << endl;
+        motorbike.viewmotorInfo();
     }
     else
     {
-        cout << "Your Motorbike for Rent:" << endl;
-        motorbike.viewmotorInfo();
+        string model, transMode, description, startTime, endTime, city;
+        int engineSize = 0, yearMade = 0, pointCost = 0, minRentRating = 0;
+        int choice = 0;
+
+        while (choice != 1)
+        {
+            cout << "Enter the model: ";
+            getline(cin, model);
+            cout << "Enter the engine size: ";
+            cin >> engineSize;
+            cout << "Enter the transmission mode: ";
+            getline(cin, transMode);
+            cout << "Enter the manufactured year: ";
+            cin >> yearMade;
+            cout << "Enter the description of the motorbike: ";
+            getline(cin, description);
+            cout << "Enter the credit point cost: ";
+            cin >> pointCost;
+            cout << "Enter the minimum rent rating: ";
+            cin >> minRentRating;
+            cout << "Enter the start time for rent: ";
+            getline(cin, startTime);
+            cout << "Enter the end time for rent: ";
+            getline(cin, endTime);
+            cout << "Enter the location: ";
+            getline(cin, city);
+            hasMotorbike = true;
+
+            cout << "============================================================" << endl;
+            cout << "Your motorbike information" << endl;
+            cout << "--------------------------" << endl;
+            cout << "Model: " << model << endl;
+            cout << "Engine size: " << engineSize << endl;
+            cout << "Transmission mode: " << transMode << endl;
+            cout << "Manufactured year: " << yearMade << endl;
+            cout << "Description: " << description << endl;
+            cout << "Credit point cost: " << pointCost << endl;
+            cout << "Minimum rent rating: " << minRentRating << endl;
+            cout << "Start time: " << startTime << endl;
+            cout << "End time: " << endTime << endl;
+            cout << "Location: " << city << endl;
+            cout << "============================================================" << endl;
+            cout << "Is this correct? (1 for yes, 0 for no): ";
+            cin >> choice;
+        }
+
+        Motorbike newMotorbike(model, engineSize, transMode, yearMade, description,
+                                       pointCost, minRentRating, startTime, endTime, city);
+        motorbike = newMotorbike;
+        database.addMotorbikeToList(motorbike);
+        cout << "\nYour listing has been posted successfully.";
     }
 }
 

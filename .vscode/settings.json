@@ -47,7 +47,8 @@
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "xiosbase": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "C_Cpp.dimInactiveRegions": true
