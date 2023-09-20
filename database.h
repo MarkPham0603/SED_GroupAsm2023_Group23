@@ -7,6 +7,9 @@
 #include "utils.h"
 using namespace std;
 
+class Member;
+class Utility;
+
 class Database
 {
 private:

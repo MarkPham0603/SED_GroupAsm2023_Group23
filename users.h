@@ -8,14 +8,14 @@
 using namespace std;
 
 class Database;
+class Utility;
 
 class Guest
 {
 public:
     // User enter some personal information for register as Member
-    void registerAsMember(Database &database);
-    void viewAllMotorbikeForGuest(Database &database);
-    friend Member;
+    void registerAsMember(Database& database);
+    void viewAllMotorbikeForGuest(Database& database);
 };
 
 class Member : public Guest
@@ -44,9 +44,8 @@ public:
           driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate),
           creditPoints(creditPoints), motorbike(motorbike), hasMotorbike(hasMotorbike){};
     void viewInformation();
-    void listMotorbikeForRent(Database database);
+    void listMotorbikeForRent(Database& database);
     void unlistMotorbike();
-    friend Admin;
     friend Database;
     friend Utility;
 };
@@ -56,10 +55,9 @@ class Admin
 private:
     string username;
     string password;
-    Database database;
 public:
     // Admin class constructor
-    Admin(const string adminUsername, string adminPassword)
+    Admin(const string &adminUsername, string &adminPassword)
         : username(adminUsername), password(adminPassword){};
 };
 

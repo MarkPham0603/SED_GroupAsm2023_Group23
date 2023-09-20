@@ -11,6 +11,7 @@ using namespace std;
 
 int main()
 {
-
+    Shop shop("Number One");
+    shop.startScreen();
     return 0;
 }

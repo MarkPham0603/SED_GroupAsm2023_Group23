@@ -160,7 +160,7 @@ void Member::viewInformation()
     }
 }
 
-void Member::listMotorbikeForRent(Database database)
+void Member::listMotorbikeForRent(Database& database)
 {
     if (hasMotorbike)
     {

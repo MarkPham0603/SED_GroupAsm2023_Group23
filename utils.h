@@ -6,6 +6,8 @@
 #include "database.h"
 using namespace std;
 
+class Database;
+
 class Utility
 {
 public:

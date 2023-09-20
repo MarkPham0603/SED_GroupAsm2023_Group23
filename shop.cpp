@@ -4,23 +4,12 @@
 #include "shop.h"
 using namespace std;
 
-void Shop::startScreen()
-{
-    cout << "============================================================" << endl;
-    cout << "EEET2482/COSC2082 GROUP ASSIGNMENT" << endl;
-    cout << "MOTORBIKE RENTAL APPLICATION" << endl;
-    cout << "\n Instructor: Dr. Ling Huo Chong" << endl;
-    cout << "Group: Group 23" << endl;
-    cout << "s3970818, Student Name: Trinh Quang Huy" << endl;
-    cout << "s3929256, Student Name: Pham Minh Hoa" << endl;
-    cout << "s3938309, Student Name: Nguyen Dinh Quoc Bao" << endl;
-    cout << "============================================================" << endl;
-}
-
 void Shop::loginMenu()
 {
     int user_choice = 0;
     bool login_success = false;
+    string username, password;
+
     cout << "============================================================" << endl;
     cout << "Sign in as: " << endl;
     cout << "1. Member" << endl;
@@ -36,12 +25,17 @@ void Shop::loginMenu()
         case 1:
             cout << "============================================================" << endl;
             cout << "Enter your username:";
+            getline(cin, username);
             cout << "Enter your password:";
+            getline(cin, password);
+            
             break;
         case 2:
             cout << "============================================================" << endl;
             cout << "Enter your username:";
+            getline(cin, username);
             cout << "Enter your password:";
+            getline(cin, password);
             break;
         case 3:
             cout << "Login successfully as Guest.";
@@ -53,3 +47,18 @@ void Shop::loginMenu()
         };
     }
 }
+
+void Shop::startScreen()
+{
+    cout << "============================================================" << endl;
+    cout << "EEET2482/COSC2082 GROUP ASSIGNMENT" << endl;
+    cout << "MOTORBIKE RENTAL APPLICATION" << endl;
+    cout << "\n Instructor: Dr. Ling Huo Chong" << endl;
+    cout << "Group: Group 23" << endl;
+    cout << "s3970818, Student Name: Trinh Quang Huy" << endl;
+    cout << "s3929256, Student Name: Pham Minh Hoa" << endl;
+    cout << "s3938309, Student Name: Nguyen Dinh Quoc Bao" << endl;
+    cout << "============================================================" << endl;
+    loginMenu();
+}
+

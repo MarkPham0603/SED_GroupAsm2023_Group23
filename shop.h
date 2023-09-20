@@ -19,11 +19,7 @@ public:
         name.clear();
     }
     void startScreen();
-    void loginMenu();
-    void memberLogin();
-    void adminLogin();
-    void guestLogin();
-    
+    void loginMenu(); 
 };
 
 #endif
