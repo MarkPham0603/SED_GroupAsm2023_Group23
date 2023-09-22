@@ -1,0 +1,5 @@
+user_1,pass_1,John_Smith,123-456-7890,Passport,PP123456,DL7890,2024-10-15,50,False
+user_2,pass_2,Emily_Johnson,987-654-3210,CitizenID,CID987654,DL4321,2023-12-31,30,False
+user_3,pass_3,Maria_Garcia,555-123-4567,Passport,PP987654,DL5555,2024-08-20,40,True
+user_4,pass_4,David_Lee,111-222-3333,Citizen_ID,CID111222,DL3333,2023-11-10,25,True
+user_5,pass_5,Sarah_Miller,888-777-6666,Passport,PP555555,DL8888,2024-09-05,60,False
