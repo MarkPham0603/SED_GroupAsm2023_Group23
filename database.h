@@ -12,13 +12,16 @@ class Member;
 class Motorbike;
 class Utility;
 class Request;
+class Admin;
 
 class Database
 {
 private:
     vector<Member> listOfMember;
     vector<Motorbike> listOfMotorbikeForRent;
-    vector<Request> listOfRequests; 
+    vector<Request> listOfRequests;
+    void viewAllMembers();
+    void viewAllMotorbikes();
 public:
     //Database functions declarations
     void addMemberToList(Member &new_member);
@@ -30,6 +33,7 @@ public:
     vector<Member>& getListOfMember();
     vector<Request>& getListOfRequest();
     void viewAllMotorbikeForGuest();
+    friend Admin;
     friend Utility;
 };
 

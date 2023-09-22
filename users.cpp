@@ -309,7 +309,6 @@ void Member::searchMotorbyCity(Database &database)
 void Member::requestToRent(Database &database)
 {
     string choice;
-    searchMotorbyCity(database);
     cout << "Enter the owner that you want to rent the motorbike from, or 0 to cancel the request: ";
     getline(cin, choice);
 

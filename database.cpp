@@ -77,7 +77,7 @@ vector<Request> &Database::getListOfRequest()
     return listOfRequests;
 }
 
-// Define viewAllMotorbikeForGuest
+// Define viewAllMotorbike
 void Database::viewAllMotorbikeForGuest()
 {
     // Check if the motorbike list is empty
@@ -90,6 +90,38 @@ void Database::viewAllMotorbikeForGuest()
         for (size_t i = 0; i < listOfMotorbikeForRent.size(); i++)
         {
             listOfMotorbikeForRent[i].viewmotorInfo();
+        }
+    }
+}
+
+void Database::viewAllMembers()
+{
+    if (listOfMember.empty())
+    {
+        cout << "No members registered at this time.\n";
+    }
+    else
+    {
+        for (auto &member : listOfMember)
+        {
+            member.viewInformation();
+            cout << '\n';
+        }
+    }
+}
+
+void Database::viewAllMotorbikes()
+{
+    if (listOfMotorbikeForRent.empty())
+    {
+        cout << "No motorbike available at this time.\n";
+    }
+    else
+    {
+        for (auto &motorbike : listOfMotorbikeForRent)
+        {
+            motorbike.viewmotorInfo();
+            cout << '\n';
         }
     }
 }

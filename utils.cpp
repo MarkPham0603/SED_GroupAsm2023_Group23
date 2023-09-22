@@ -12,7 +12,7 @@ using namespace std;
 // Save all the data to File
 void Utility::saveDataToFile(Database &database, const string &filename1, const string &filename2, const string &filename3)
 {
-    ofstream member_test(filename1), motorbike_test(filename2), requests_test(filename3);
+    ofstream member_test("members_test.txt"), motorbike_test("motorbikes_test.txt"), requests_test("requests_test.txt");
 
     // Save the data from Member list
     if (member_test.is_open())
@@ -31,14 +31,19 @@ void Utility::saveDataToFile(Database &database, const string &filename1, const 
             database.listOfMember[i].creditPoints << ',' << 
             database.listOfMember[i].rent_rating << ',' << 
             database.listOfMember[i].request_rating << ',' << 
-            int(database.listOfMember[i].hasMotorbike) << '\n';
+            int(database.listOfMember[i].hasMotorbike);
+            if (i < database.listOfMember.size() - 1)
+            {
+                member_test << '\n';
+            }
+            
         }
     }
     
     // Save the data from Motor list
     if (motorbike_test.is_open())
     {
-        for (size_t i = 0; i < database.listOfMember.size(); i++)
+        for (size_t i = 0; i < database.listOfMotorbikeForRent.size(); i++)
         {
             motorbike_test << database.listOfMotorbikeForRent[i].owner << ',' << 
             database.listOfMotorbikeForRent[i].model << ',' << 
@@ -50,7 +55,11 @@ void Utility::saveDataToFile(Database &database, const string &filename1, const 
             database.listOfMotorbikeForRent[i].minRequestRating << ',' << 
             database.listOfMotorbikeForRent[i].rent_day << ',' << 
             database.listOfMotorbikeForRent[i].rent_status << ',' << 
-            database.listOfMotorbikeForRent[i].city << '\n';
+            database.listOfMotorbikeForRent[i].city;
+            if (i < database.listOfMotorbikeForRent.size() - 1)
+            {
+                motorbike_test << '\n';
+            }
         }
     }
     
@@ -61,7 +70,12 @@ void Utility::saveDataToFile(Database &database, const string &filename1, const 
         {
             requests_test << database.listOfRequests[i].requester << ',' <<
             database.listOfRequests[i].requestee << ',' <<
-            database.listOfRequests[i].status<< '\n';
+            database.listOfRequests[i].requester_rating << ',' <<
+            database.listOfRequests[i].status;
+            if (i < database.listOfRequests.size() - 1)
+            {
+                requests_test << '\n';
+            }
         }
     }
 
@@ -101,10 +115,10 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
             getline(teststr, creditPoints_temp, ',');
             creditPoints = stoi(creditPoints_temp);
             getline(teststr, rent_rating_temp, ',');
-            creditPoints = stoi(rent_rating_temp);
+            rent_rating = stoi(rent_rating_temp);
             getline(teststr, request_rating_temp, ',');
-            creditPoints = stoi(request_rating_temp);
-            getline(teststr, hasMotorbike_temp, '\n');
+            request_rating = stoi(request_rating_temp);
+            getline(teststr, hasMotorbike_temp);
             if (hasMotorbike_temp == "1")
             {
                 hasMotorbike = true;
@@ -128,7 +142,7 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
         {
             string username, model, engineSize_temp, transMode, yearMade_temp, description, pointCost_temp,
                 minRequestRating_temp, rent_day, rent_status, city;
-            int engineSize, yearMade, pointCost, minRenRating;
+            int engineSize, yearMade, pointCost, minRequestRating;
             getline(motorbikes_test, test);
 
             // Get data from the file
@@ -144,14 +158,14 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
             getline(teststr, pointCost_temp, ',');
             pointCost = stoi(pointCost_temp);
             getline(teststr, minRequestRating_temp, ',');
-            minRenRating = stoi(minRequestRating_temp);
+            minRequestRating = stoi(minRequestRating_temp);
             getline(teststr, rent_day, ',');
             getline(teststr, rent_status, ',');
-            getline(teststr, city, '\n');
+            getline(teststr, city);
 
             // Create new object and add to list
             Motorbike motorbike(username, model, engineSize,
-                                transMode, yearMade, description, pointCost, minRenRating, rent_day, rent_status, city);
+                                transMode, yearMade, description, pointCost, minRequestRating, rent_day, rent_status, city);
             database.addMotorbikeToList(motorbike);
         }
     }

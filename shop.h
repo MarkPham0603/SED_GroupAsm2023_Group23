@@ -23,9 +23,9 @@ public:
     }
     void startScreen(Admin &admin, Database &database);
     void loginMenu(Admin &admin, Database &database);
-    void memberMenu(Member &member);
-    void adminMenu(Admin &admin);
-    void guestMenu(Guest &guest);
+    void memberMenu(Member &member, Database &database);
+    void adminMenu(Admin &admin, Database &database);
+    void guestMenu(Guest &guest, Database &database);
 };
 
 #endif
