@@ -46,6 +46,7 @@ public:
     void viewInformation();
     void listMotorbikeForRent(Database& database);
     void unlistMotorbike(Database& database);
+    void searchMotorbyCity(Database &database);
     friend Database;
     friend Utility;
 };

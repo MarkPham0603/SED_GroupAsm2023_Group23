@@ -36,6 +36,26 @@ public:
     void viewmotorInfo();
     // Get owner's username
     string& getUsername();
+    // Getter for model
+    string& getModel();
+    // Getter for engineSize
+    int& getEngineSize();
+    // Getter for transMode
+    string& getTransMode();
+    // Getter for yearMade
+    int& getYearMade();
+    // Getter for description
+    string& getDescription();
+    // Getter for pointCost
+    int& getPointCost();
+    // Getter for minrentRating
+    int& getMinrentRating();
+    // Getter for rent_day
+    string& getRentDay();
+    // Getter for rent_status
+    string& getRentStatus();
+    // Getter for city
+    string& getCity();
 
     friend Utility;
 };
