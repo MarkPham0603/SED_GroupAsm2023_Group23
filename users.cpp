@@ -41,6 +41,7 @@ void Guest::registerAsMember(Database &database)
         cout << "============================================================" << endl;
         cout << "Do you have a motorbike to list for rent? (1 for yes, 0 for no): ";
         cin >> choice;
+        cin.sync();
         if (choice == 1)
         {
             // Define motorbike if user has one
@@ -48,16 +49,19 @@ void Guest::registerAsMember(Database &database)
             getline(cin, model);
             cout << "Enter the engine size: ";
             cin >> engineSize;
+            cin.sync();
             cout << "Enter the transmission mode: ";
             getline(cin, transMode);
             cout << "Enter the manufactured year: ";
             cin >> yearMade;
+            cin.sync();
             cout << "Enter the description of the motorbike: ";
             getline(cin, description);
             cout << "Enter the credit point cost: ";
             cin >> pointCost;
             cout << "Enter the minimum rent rating: ";
             cin >> minRequestRating;
+            cin.sync();
             cout << "Enter the day and month available for rent (dd/mm): ";
             getline(cin, rent_day);
             cout << "Enter the location: ";
@@ -101,6 +105,7 @@ void Guest::registerAsMember(Database &database)
 
         cout << "Is this correct? (1 for yes, 0 for no): ";
         cin >> choice;
+        cin.sync();
         if (choice == 1)
         {
             if (hasMotorbike)
@@ -180,16 +185,19 @@ void Member::listMotorbikeForRent(Database &database)
             getline(cin, model);
             cout << "Enter the engine size: ";
             cin >> engineSize;
+            cin.sync();
             cout << "Enter the transmission mode: ";
             getline(cin, transMode);
             cout << "Enter the manufactured year: ";
             cin >> yearMade;
+            cin.sync();
             cout << "Enter the description of the motorbike: ";
             getline(cin, description);
             cout << "Enter the credit point cost: ";
             cin >> pointCost;
             cout << "Enter the minimum rent rating: ";
             cin >> minRequestRating;
+            cin.sync();
             cout << "Enter the day and month available for rent (dd/mm): ";
             getline(cin, rent_day);
             cout << "Enter the location: ";
@@ -211,6 +219,7 @@ void Member::listMotorbikeForRent(Database &database)
             cout << "============================================================" << endl;
             cout << "Is this correct? (1 for yes, 0 for no): ";
             cin >> choice;
+            cin.sync();
             if (choice == 1)
             {
                 // Create new motorbike object and add to the list
@@ -223,6 +232,7 @@ void Member::listMotorbikeForRent(Database &database)
             {
                 cout << "Do you want to quit? (1 for yes, 0 for no): ";
                 cin >> choice;
+                cin.sync();
                 if (choice == 1)
                 {
                     cout << "Your listing request has been canceled." << endl;
@@ -262,6 +272,7 @@ void Member::unlistMotorbike(Database &database)
                     motorbike.viewmotorInfo();
                     cout << "Do you want to unlist this motorbike (1 for yes, 0 for no): ";
                     cin >> choice;
+                    cin.sync();
                     if (choice == 1)
                     {
                         hasMotorbike = false; // Mark that the member no longer has a listed motorbike
@@ -280,7 +291,7 @@ void Member::searchMotorbyCity(Database &database)
 {
     string city;
     cout << "Enter the city to search for available motorbikes: ";
-    cin >> city;
+    getline(cin, city);
 
     // Display available motorbikes in the specified city
     cout << "Available motorbikes in " << city << ":" << endl;

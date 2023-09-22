@@ -44,7 +44,6 @@ void Shop::loginMenu(Admin &admin, Database &database)
                 getline(cin, username);
                 cout << "Enter your password: ";
                 getline(cin, password);
-                cin.sync();
                 for (auto &member : database.getListOfMember())
                 {
                     if (member.getUsername() == username)
@@ -68,7 +67,6 @@ void Shop::loginMenu(Admin &admin, Database &database)
                 getline(cin, username);
                 cout << "Enter your password: ";
                 getline(cin, password);
-                cin.sync();
                 if (admin.getUsername() == username)
                 {
                     if (admin.getPassword() == password)
@@ -190,6 +188,20 @@ void Shop::adminMenu(Admin &admin, Database &database)
         cout << "\n Please enter the available options from 0 to 2: ";
         cin >> choice;
         cin.sync();
+        switch (choice)
+        {
+        case 0:
+            cout << "Log out successfully!\n";
+            break;
+        case 1:
+            admin.viewAllMembers(database);
+            break;
+        case 2:
+            admin.viewAllMotorbikes(database);
+            break;
+        default:
+            break;
+        }
     }
 }
 
