@@ -265,6 +265,7 @@ void Member::unlistMotorbike(Database &database)
                     if (choice == 1)
                     {
                         hasMotorbike = false; // Mark that the member no longer has a listed motorbike
+                        database.removeMotorbikeFromList(motorbike);
                         cout << "Your motorbike has been unlisted." << endl;
                     }
                     else

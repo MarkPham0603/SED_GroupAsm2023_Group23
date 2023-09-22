@@ -44,6 +44,7 @@ void Shop::loginMenu(Admin &admin, Database &database)
                 getline(cin, username);
                 cout << "Enter your password: ";
                 getline(cin, password);
+                cin.sync();
                 for (auto &member : database.getListOfMember())
                 {
                     if (member.getUsername() == username)
@@ -56,6 +57,10 @@ void Shop::loginMenu(Admin &admin, Database &database)
                         }
                     }
                 }
+                if (login_success == false)
+                {
+                    cout << "Login unsuccessful. Please enter your login method again (a number from 0 to 3): ";
+                }
                 break;
             case 2:
                 cout << "============================================================" << endl;
@@ -63,6 +68,7 @@ void Shop::loginMenu(Admin &admin, Database &database)
                 getline(cin, username);
                 cout << "Enter your password: ";
                 getline(cin, password);
+                cin.sync();
                 if (admin.getUsername() == username)
                 {
                     if (admin.getPassword() == password)
@@ -71,6 +77,10 @@ void Shop::loginMenu(Admin &admin, Database &database)
                         login_success = true;
                         adminMenu(admin, database);
                     }
+                }
+                if (login_success == false)
+                {
+                    cout << "Login unsuccessful. Please enter your login method again (a number from 0 to 3): ";
                 }
                 break;
             case 3:
@@ -81,7 +91,7 @@ void Shop::loginMenu(Admin &admin, Database &database)
                 break;
             default:
                 cout << "============================================================" << endl;
-                cout << "Invalid choice! Please enter your choice again (a number from 1 to 3): ";
+                cout << "Invalid choice! Please enter your choice again (a number from 0 to 3): ";
                 break;
             };
         }
@@ -113,16 +123,22 @@ void Shop::memberMenu(Member &member, Database &database)
             break;
         case 1:
             member.viewInformation();
+            break;
         case 2:
             member.listMotorbikeForRent(database);
+            break;
         case 3:
             member.unlistMotorbike(database);
+            break;
         case 4:
             member.searchMotorbyCity(database);
+            break;
         case 5:
             member.requestToRent(database);
+            break;
         case 6:
             member.checkAndApproveRentRequests(database);
+            break;
         default:
             cout << "Invalid choice! Please try again!";
             break;
@@ -175,7 +191,6 @@ void Shop::adminMenu(Admin &admin, Database &database)
         cin >> choice;
         cin.sync();
     }
-    
 }
 
 // Welcome screen for the app
