@@ -4,12 +4,14 @@
 #include "shop.h"
 using namespace std;
 
-void Shop::loginMenu(Database &database)
+// Login menu for app
+void Shop::loginMenu()
 {
     int user_choice = 0;
     bool login_success = false;
     string username, password;
 
+    //users enter their choice 
     cout << "============================================================" << endl;
     cout << "Sign in as: " << endl;
     cout << "1. Member" << endl;
@@ -21,6 +23,7 @@ void Shop::loginMenu(Database &database)
     {
         cin >> user_choice;
         cin.sync();
+        // Divide user's choice to 3: login as member, admin and guest
         switch (user_choice)
         {
         case 1:
@@ -48,6 +51,7 @@ void Shop::loginMenu(Database &database)
     }
 }
 
+// Welcom screen for the app
 void Shop::startScreen(Database &database)
 {
     cout << "============================================================" << endl;

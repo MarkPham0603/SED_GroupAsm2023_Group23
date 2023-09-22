@@ -127,6 +127,7 @@ void Guest::viewAllMotorbikeForGuest(Database &database)
 }
 
 // Define Member class functions
+// View Member information
 void Member::viewInformation()
 {
     cout << "============================================================" << endl;
@@ -147,13 +148,16 @@ void Member::viewInformation()
     cout << "Has motorbike for rent: " << hasMotorbike << endl;
 }
 
+// Member can list motorbike for rent
 void Member::listMotorbikeForRent(Database &database)
 {
+    // Check if the member already has a motorbike or not
     if (hasMotorbike)
     {
         cout << "You already have a motorbike listed for rent." << endl;
         for (auto &motorbike : database.getListOfMotorbikeForRent())
         {
+            //Check if the motorbike owner is match with Member username
             if (motorbike.getOwner() == username)
             {
                 cout << "Your motorbike information" << endl;
@@ -162,6 +166,7 @@ void Member::listMotorbikeForRent(Database &database)
             }
         }
     }
+    // if not, member can provide information for new motorbike and add to the list
     else
     {
         string model, transMode, description, rent_day, rent_status = "Available", city;
@@ -170,6 +175,7 @@ void Member::listMotorbikeForRent(Database &database)
 
         while (choice != 1)
         {
+            // Member enter motor information
             cout << "Enter the model: ";
             getline(cin, model);
             cout << "Enter the engine size: ";
@@ -207,6 +213,7 @@ void Member::listMotorbikeForRent(Database &database)
             cin >> choice;
             if (choice == 1)
             {
+                // Create new motorbike object and add to the list
                 Motorbike newMotorbike(username, model, engineSize, transMode, yearMade, description,
                                        pointCost, minRequestRating, rent_day, rent_status, city);
                 database.addMotorbikeToList(newMotorbike);
@@ -225,18 +232,23 @@ void Member::listMotorbikeForRent(Database &database)
     }
 }
 
+// Member can unlist motorbike
 void Member::unlistMotorbike(Database &database)
 {
+    //Check if the member already has a motorbike or not
     if (!hasMotorbike)
     {
         cout << "You don't have a motorbike listed for rent." << endl;
     }
     else
     {
+        // Loop through the database of Motorbike List
         for (auto &motorbike : database.getListOfMotorbikeForRent())
         {
+            //Check if the motorbike owner is match with Member username
             if (motorbike.getOwner() == username)
             {
+                //Check for the motorbike status
                 if (motorbike.getRentStatus() == "Rented")
                 {
                     cout << "Sorry! You can't unlist a motorbike while that motorbike is being rented.\n";
@@ -275,6 +287,7 @@ void Member::searchMotorbyCity(Database &database)
 
     for (Motorbike &motorbike : database.getListOfMotorbikeForRent())
     {
+        // Check for the city and status
         if (motorbike.getCity() == city && motorbike.getRentStatus() == "Available")
         {
             cout << "Owner: " << motorbike.getOwner() << endl;
@@ -292,6 +305,7 @@ void Member::searchMotorbyCity(Database &database)
     }
 }
 
+// Member can make a request to rent motorbike
 void Member::requestToRent(Database &database)
 {
     string choice;
@@ -305,8 +319,10 @@ void Member::requestToRent(Database &database)
     }
     else
     {
+        // Loop through the member list
         for (auto &i : database.getListOfMember())
         {
+            // check if the user input is match with Member user name
             if (i.username == choice)
             {
                 Request newRequest(username, i.username, request_rating, "Pending");
