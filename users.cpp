@@ -254,3 +254,28 @@ void Member::unlistMotorbike(Database &database)
         }
     }
 }
+
+void Member::searchMotorbyCity(Database &database) {
+    string city;
+    cout << "Enter the city to search for available motorbikes: ";
+    cin >> city;
+
+    // Display available motorbikes in the specified city
+    cout << "Available motorbikes in " << city << ":" << endl;
+    cout << "----------------------------------" << endl;
+
+    for (Motorbike &motorbike : database.getListOfMotorbikeForRent()) {
+        if (motorbike.getCity() == city && motorbike.getRentStatus() == "Available") {
+            cout << "Motorbike Name: " << motorbike.getModel() << endl;
+            cout << "Engine Size: " << motorbike.getEngineSize() << "cc" << endl;
+            cout << "Transmission Model: " << motorbike.getTransMode() << endl;
+            cout << "Year Made: " << motorbike.getYearMade() << endl;
+            cout << "Description: " << motorbike.getDescription() << endl;
+            cout << "Point Cost: " << motorbike.getPointCost() << endl;
+            cout << "Minimum Rent Rating: " << motorbike.getMinrentRating() << endl;
+            cout << "Rent Day: " << motorbike.getRentDay() << endl;
+            cout << "Location: " << motorbike.getCity() << endl;
+            cout << endl;
+        }
+    }
+}

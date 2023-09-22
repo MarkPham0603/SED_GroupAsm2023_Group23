@@ -23,3 +23,54 @@ string &Motorbike::getOwner()
 {
     return owner;
 }
+
+// Getter for model
+string &Motorbike::getModel() {
+    return model;
+}
+
+// Getter for engineSize
+int &Motorbike::getEngineSize(){
+    return engineSize;
+}
+
+// Getter for transMode
+string &Motorbike::getTransMode(){
+    return transMode;
+}
+
+// Getter for yearMade
+int &Motorbike::getYearMade(){
+    return yearMade;
+}
+
+// Getter for description
+string &Motorbike::getDescription(){
+    return description;
+}
+
+// Getter for pointCost
+int &Motorbike::getPointCost(){
+    return pointCost;
+}
+
+// Getter for minrentRating
+int &Motorbike::getMinrentRating(){
+    return minrentRating;
+}
+
+// Getter for rent_day
+string &Motorbike::getRentDay(){
+    return rent_day;
+}
+
+// Getter for rent_status
+string &Motorbike::getRentStatus(){
+    return rent_status;
+}
+
+// Getter for city
+string &Motorbike::getCity(){
+    return city;
+}
+
