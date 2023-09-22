@@ -9,12 +9,15 @@
 #include "request.h"
 using namespace std;
 
+// Save all the data to File
 void Utility::saveDataToFile(Database &database, string &data_type, const string &filename1, const string &filename2, const string &filename3)
 {
     ofstream member_test(filename1), motorbike_test(filename2), requests_test(filename3);
 
+    // Save the data from Member list
     if (member_test.is_open())
     {
+        // Loop through the list, save the data, separate each with comma
         for (size_t i = 0; i < database.listOfMember.size(); i++)
         {
             member_test << database.listOfMember[i].username << ',' << 
@@ -32,6 +35,7 @@ void Utility::saveDataToFile(Database &database, string &data_type, const string
         }
     }
     
+    // Save the data from Motor list
     if (motorbike_test.is_open())
     {
         for (size_t i = 0; i < database.listOfMember.size(); i++)
@@ -50,6 +54,7 @@ void Utility::saveDataToFile(Database &database, string &data_type, const string
         }
     }
     
+    // Save the data from Request list
     if (requests_test.is_open())
     {
         for (size_t i = 0; i < database.listOfRequests.size(); i++)
@@ -65,6 +70,7 @@ void Utility::saveDataToFile(Database &database, string &data_type, const string
     requests_test.close();
 }
 
+// Load the data from file
 void Utility::loadDataFromFile(Database &database, const string &filename1, const string &filename2, const string& filename3)
 {
     ifstream members_test(filename1), motorbikes_test(filename2), requests_test(filename3);
@@ -82,6 +88,7 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
             bool hasMotorbike;
             getline(members_test, test);
 
+            // Get data from the file
             stringstream teststr(test);
             getline(teststr, username, ',');
             getline(teststr, password, ',');
@@ -105,6 +112,7 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
             else
                 hasMotorbike = false;
 
+            // Create new object and add to list
             Member member(username, password, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate, creditPoints, rent_rating, request_rating, hasMotorbike);
             database.addMemberToList(member);
         }
@@ -123,6 +131,7 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
             int engineSize, yearMade, pointCost, minRenRating;
             getline(motorbikes_test, test);
 
+            // Get data from the file
             stringstream teststr(test);
             getline(teststr, username, ',');
             getline(teststr, model, ',');
@@ -140,6 +149,7 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
             getline(teststr, rent_status, ',');
             getline(teststr, city, '\n');
 
+            // Create new object and add to list
             Motorbike motorbike(username, model, engineSize,
                                 transMode, yearMade, description, pointCost, minRenRating, rent_day, rent_status, city);
             database.addMotorbikeToList(motorbike);
@@ -157,11 +167,13 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
             string requester, requestee, status;
             getline(requests_test, test);
 
+            // Get data from the file
             stringstream teststr(test);
             getline(teststr, requester, ',');
             getline(teststr, requestee, ',');
             getline(teststr, status, ',');
 
+            // Create new object and add to list
             Request request(requester, requestee, status);
             database.addMotorbikeToList(motorbike);
         }
