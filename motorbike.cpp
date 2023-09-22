@@ -12,7 +12,7 @@ void Motorbike::viewmotorInfo()
     cout << "Manufactured year: " << yearMade << endl;
     cout << "Description: " << description << endl;
     cout << "Credit point cost: " << pointCost << endl;
-    cout << "Minimum rent rating: " << minrentRating << endl;
+    cout << "Minimum request rating: " << minRequestRating << endl;
     cout << "Available day: " << rent_day << endl;
     cout << "Status: " << rent_status << endl;
     cout << "Location: " << city << endl;
@@ -55,8 +55,8 @@ int &Motorbike::getPointCost(){
 }
 
 // Getter for minrentRating
-int &Motorbike::getMinrentRating(){
-    return minrentRating;
+int &Motorbike::getMinRequestRating(){
+    return minRequestRating;
 }
 
 // Getter for rent_day

@@ -11,7 +11,7 @@ void Guest::registerAsMember(Database &database)
 {
     string username, password, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate;
     string model, transMode, description, rent_day, rent_status = "Available", city;
-    int engineSize = 0, yearMade = 0, pointCost = 0, minRentRating = 0;
+    int engineSize = 0, yearMade = 0, pointCost = 0, minRequestRating = 0;
     int choice = 0;
     bool hasMotorbike = false;
 
@@ -56,7 +56,7 @@ void Guest::registerAsMember(Database &database)
             cout << "Enter the credit point cost: ";
             cin >> pointCost;
             cout << "Enter the minimum rent rating: ";
-            cin >> minRentRating;
+            cin >> minRequestRating;
             cout << "Enter the day and month available for rent (dd/mm): ";
             getline(cin, rent_day);
             cout << "Enter the location: ";
@@ -92,7 +92,7 @@ void Guest::registerAsMember(Database &database)
             cout << "Manufactured year: " << yearMade << endl;
             cout << "Description: " << description << endl;
             cout << "Credit point cost: " << pointCost << endl;
-            cout << "Minimum rent rating: " << minRentRating << endl;
+            cout << "Minimum rent rating: " << minRequestRating << endl;
             cout << "Available day: " << rent_day << endl;
             cout << "Location: " << city << endl;
             cout << "============================================================" << endl;
@@ -106,7 +106,7 @@ void Guest::registerAsMember(Database &database)
             {
                 // Create a new Motorbike and use it in the constructor of the new Member object with user inputs and add them to member list
                 Motorbike newMotorbike(username, model, engineSize, transMode, yearMade, description,
-                                       pointCost, minRentRating, rent_day, rent_status, city);
+                                       pointCost, minRequestRating, rent_day, rent_status, city);
                 database.addMotorbikeToList(newMotorbike);
             }
 
@@ -164,7 +164,7 @@ void Member::listMotorbikeForRent(Database &database)
     else
     {
         string model, transMode, description, rent_day, rent_status = "Available", city;
-        int engineSize = 0, yearMade = 0, pointCost = 0, minRentRating = 0;
+        int engineSize = 0, yearMade = 0, pointCost = 0, minRequestRating = 0;
         int choice = 0;
 
         while (choice != 1)
@@ -182,7 +182,7 @@ void Member::listMotorbikeForRent(Database &database)
             cout << "Enter the credit point cost: ";
             cin >> pointCost;
             cout << "Enter the minimum rent rating: ";
-            cin >> minRentRating;
+            cin >> minRequestRating;
             cout << "Enter the day and month available for rent (dd/mm): ";
             getline(cin, rent_day);
             cout << "Enter the location: ";
@@ -198,7 +198,7 @@ void Member::listMotorbikeForRent(Database &database)
             cout << "Manufactured year: " << yearMade << endl;
             cout << "Description: " << description << endl;
             cout << "Credit point cost: " << pointCost << endl;
-            cout << "Minimum rent rating: " << minRentRating << endl;
+            cout << "Minimum rent rating: " << minRequestRating << endl;
             cout << "Start time: " << rent_day << endl;
             cout << "Location: " << city << endl;
             cout << "============================================================" << endl;
@@ -207,7 +207,7 @@ void Member::listMotorbikeForRent(Database &database)
             if (choice == 1)
             {
                 Motorbike newMotorbike(username, model, engineSize, transMode, yearMade, description,
-                                       pointCost, minRentRating, rent_day, rent_status, city);
+                                       pointCost, minRequestRating, rent_day, rent_status, city);
                 database.addMotorbikeToList(newMotorbike);
                 cout << "\nYour listing has been posted successfully.";
             }
@@ -236,46 +236,62 @@ void Member::unlistMotorbike(Database &database)
         {
             if (motorbike.getOwner() == username)
             {
-                int choice;
-
-                cout << "Your motorbike information" << endl;
-                cout << "--------------------------" << endl;
-                motorbike.viewmotorInfo();
-                cout << "Do you want to unlist this motorbike (1 for yes, 0 for no): ";
-                cin >> choice;
-                if (choice == 1)
+                if (motorbike.getRentStatus() == "Rented")
                 {
-                    hasMotorbike = false; // Mark that the member no longer has a listed motorbike
-                    cout << "Your motorbike has been unlisted." << endl;
+                    cout << "Sorry! You can't unlist a motorbike while that motorbike is being rented.\n";
                 }
                 else
-                    cout << "Your unlist request has been canceled." << endl;
+                {
+                    int choice;
+
+                    cout << "Your motorbike information" << endl;
+                    cout << "--------------------------" << endl;
+                    motorbike.viewmotorInfo();
+                    cout << "Do you want to unlist this motorbike (1 for yes, 0 for no): ";
+                    cin >> choice;
+                    if (choice == 1)
+                    {
+                        hasMotorbike = false; // Mark that the member no longer has a listed motorbike
+                        cout << "Your motorbike has been unlisted." << endl;
+                    }
+                    else
+                        cout << "Your unlist request has been canceled." << endl;
+                }
             }
         }
     }
 }
 
-void Member::searchMotorbyCity(Database &database) {
+vector<Motorbike>& Member::searchMotorbyCity(Database &database)
+{
     string city;
     cout << "Enter the city to search for available motorbikes: ";
     cin >> city;
+    vector<Motorbike> available_motorbikes;
 
     // Display available motorbikes in the specified city
     cout << "Available motorbikes in " << city << ":" << endl;
     cout << "----------------------------------" << endl;
 
-    for (Motorbike &motorbike : database.getListOfMotorbikeForRent()) {
-        if (motorbike.getCity() == city && motorbike.getRentStatus() == "Available") {
+    for (Motorbike &motorbike : database.getListOfMotorbikeForRent())
+    {
+        if (motorbike.getCity() == city && motorbike.getRentStatus() == "Available")
+        {
+            cout << "Owner: " << motorbike.getOwner() << endl;
             cout << "Motorbike Name: " << motorbike.getModel() << endl;
             cout << "Engine Size: " << motorbike.getEngineSize() << "cc" << endl;
             cout << "Transmission Model: " << motorbike.getTransMode() << endl;
             cout << "Year Made: " << motorbike.getYearMade() << endl;
             cout << "Description: " << motorbike.getDescription() << endl;
             cout << "Point Cost: " << motorbike.getPointCost() << endl;
-            cout << "Minimum Rent Rating: " << motorbike.getMinrentRating() << endl;
+            cout << "Minimum Rent Rating: " << motorbike.getMinRequestRating() << endl;
             cout << "Rent Day: " << motorbike.getRentDay() << endl;
             cout << "Location: " << motorbike.getCity() << endl;
             cout << endl;
+            available_motorbikes.push_back(motorbike);
         }
     }
+    return available_motorbikes;
 }
+
+

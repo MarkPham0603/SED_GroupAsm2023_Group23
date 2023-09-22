@@ -17,7 +17,7 @@ private:
     int yearMade;
     string description;
     int pointCost;
-    int minrentRating;
+    int minRequestRating;
     string rent_day;
     string rent_status;
     string city;
@@ -26,17 +26,16 @@ public:
     // Motorbike constructor
     Motorbike(const string owner = "", const string &model = "", const int engineSize = 0,
               const string &transMode = "", const int yearMade = 0, const string &description = "",
-              const int pointCost = 0, const int minrentRating = 0,
+              const int pointCost = 0, const int minRequestRating = 0,
               const string &rent_day = "", const string &rent_status = "", const string &city = "")
         : owner(owner), model(model), engineSize(engineSize), transMode(transMode),
           yearMade(yearMade), description(description), pointCost(pointCost),
-          minrentRating(minrentRating), rent_day(rent_day), rent_status(rent_status), city(city){};
+          minRequestRating(minRequestRating), rent_day(rent_day), rent_status(rent_status), city(city){};
 
     // View motorbike models
     void viewmotorInfo();
     // Get owner's username
     string& getOwner();
-    string& getUsername();
     // Getter for model
     string& getModel();
     // Getter for engineSize
@@ -50,7 +49,7 @@ public:
     // Getter for pointCost
     int& getPointCost();
     // Getter for minrentRating
-    int& getMinrentRating();
+    int& getMinRequestRating();
     // Getter for rent_day
     string& getRentDay();
     // Getter for rent_status

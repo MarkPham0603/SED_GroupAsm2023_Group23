@@ -14,7 +14,7 @@ void Utility::saveDataToFile(Database &database, string &data_type)
     {
         ofstream member_test("member_test.txt");
 
-        for (size_t i = 0; i < database.listOfMember.capacity(); i++)
+        for (size_t i = 0; i < database.listOfMember.size(); i++)
         {
             member_test << database.listOfMember[i].username << ',' << 
             database.listOfMember[i].password << ',' << 
@@ -23,15 +23,18 @@ void Utility::saveDataToFile(Database &database, string &data_type)
             database.listOfMember[i].idType << ',' << 
             database.listOfMember[i].idPassportNumber << ',' << 
             database.listOfMember[i].driverLicenseNumber << ',' << 
-            database.listOfMember[i].expiryDate << ',' << 
-            database.listOfMember[i].creditPoints << '\n';
+            database.listOfMember[i].expiryDate << ',' <<
+            database.listOfMember[i].creditPoints << ',' <<
+            database.listOfMember[i].rent_rating << ',' << 
+            database.listOfMember[i].request_rating << ',' <<
+            int(database.listOfMember[i].hasMotorbike) << '\n';
         }
     }
     else if (data_type == "motorbikes")
     {
         ofstream motorbike_test("motorbike.txt");
 
-        for (size_t i = 0; i < database.listOfMotorbikeForRent.capacity(); i++)
+        for (size_t i = 0; i < database.listOfMotorbikeForRent.size(); i++)
         {
             motorbike_test << database.listOfMotorbikeForRent[i].owner << ',' << 
             database.listOfMotorbikeForRent[i].model << ',' << 
@@ -40,7 +43,7 @@ void Utility::saveDataToFile(Database &database, string &data_type)
             database.listOfMotorbikeForRent[i].yearMade << ',' << 
             database.listOfMotorbikeForRent[i].description << ',' << 
             database.listOfMotorbikeForRent[i].pointCost << ',' << 
-            database.listOfMotorbikeForRent[i].minrentRating << ',' << 
+            database.listOfMotorbikeForRent[i].minRequestRating << ',' << 
             database.listOfMotorbikeForRent[i].rent_day << ',' << 
             database.listOfMotorbikeForRent[i].rent_status << ',' << 
             database.listOfMotorbikeForRent[i].city << '\n';

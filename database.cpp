@@ -18,11 +18,33 @@ void Database::addMotorbikeToList(Motorbike &new_motorbike)
     listOfMotorbikeForRent.push_back(new_motorbike);
 }
 
+void Database::removeMotorbikeFromList(Motorbike &motorbike)
+{
+    for (auto i = listOfMotorbikeForRent.begin(); i != listOfMotorbikeForRent.end(); i++)
+    {
+        if (i->getOwner() == motorbike.getOwner())
+        {
+            listOfMotorbikeForRent.erase(i);
+        }
+    }
+}
+
 // Define getListOfMotorbikeForRent
 vector<Motorbike>& Database::getListOfMotorbikeForRent()
 {
     return listOfMotorbikeForRent;
 }
+
+vector<Member>& Database::getListOfMember()
+{
+    return listOfMember;
+}
+
+vector<Request>& Database::getListOfRequest()
+{
+    return listOfRequests;
+}
+
 
 // Define viewAllMotorbikeForGuest
 void Database::viewAllMotorbikeForGuest()
@@ -33,7 +55,7 @@ void Database::viewAllMotorbikeForGuest()
     }
     else
     {
-        for (size_t i = 0; i < listOfMotorbikeForRent.capacity(); i++)
+        for (size_t i = 0; i < listOfMotorbikeForRent.size(); i++)
         {
             listOfMotorbikeForRent[i].viewmotorInfo();
         }
