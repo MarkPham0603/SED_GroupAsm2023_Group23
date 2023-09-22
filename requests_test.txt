@@ -1,2 +1,0 @@
-user_1,user_2,6,Pending
-user_2,user_5,9,Pending

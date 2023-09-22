@@ -12,7 +12,7 @@ using namespace std;
 // Save all the data to File
 void Utility::saveDataToFile(Database &database, const string &filename1, const string &filename2, const string &filename3)
 {
-    ofstream member_test("members_test.txt"), motorbike_test("motorbikes_test.txt"), requests_test("requests_test.txt");
+    ofstream member_test(filename1), motorbike_test(filename2), requests_test(filename3);
 
     // Save the data from Member list
     if (member_test.is_open())
