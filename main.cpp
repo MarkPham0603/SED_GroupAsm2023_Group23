@@ -18,7 +18,7 @@ int main()
     Shop shop("Nirvana");
     const string filename1 = "./lists/members.txt", filename2 = "./lists/motorbikes.txt", filename3 = "./lists/requests.txt";
     utils.loadDataFromFile(database, filename1, filename2, filename3);
-    shop.startScreen(database);
+    shop.startScreen(admin, database);
     utils.saveDataToFile(database, filename1, filename2, filename3);
     return 0;
 }

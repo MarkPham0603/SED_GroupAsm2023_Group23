@@ -21,8 +21,11 @@ public:
     {
         name.clear();
     }
-    void startScreen(Database &database);
-    void loginMenu(Database &database); 
+    void startScreen(Admin &admin, Database &database);
+    void loginMenu(Admin &admin, Database &database);
+    void memberMenu(Member &member);
+    void adminMenu(Admin &admin);
+    void guestMenu(Guest &guest);
 };
 
 #endif

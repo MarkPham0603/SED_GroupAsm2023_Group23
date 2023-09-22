@@ -157,7 +157,7 @@ void Member::listMotorbikeForRent(Database &database)
         cout << "You already have a motorbike listed for rent." << endl;
         for (auto &motorbike : database.getListOfMotorbikeForRent())
         {
-            //Check if the motorbike owner is match with Member username
+            // Check if the motorbike owner is match with Member username
             if (motorbike.getOwner() == username)
             {
                 cout << "Your motorbike information" << endl;
@@ -235,7 +235,7 @@ void Member::listMotorbikeForRent(Database &database)
 // Member can unlist motorbike
 void Member::unlistMotorbike(Database &database)
 {
-    //Check if the member already has a motorbike or not
+    // Check if the member already has a motorbike or not
     if (!hasMotorbike)
     {
         cout << "You don't have a motorbike listed for rent." << endl;
@@ -245,10 +245,10 @@ void Member::unlistMotorbike(Database &database)
         // Loop through the database of Motorbike List
         for (auto &motorbike : database.getListOfMotorbikeForRent())
         {
-            //Check if the motorbike owner is match with Member username
+            // Check if the motorbike owner is match with Member username
             if (motorbike.getOwner() == username)
             {
-                //Check for the motorbike status
+                // Check for the motorbike status
                 if (motorbike.getRentStatus() == "Rented")
                 {
                     cout << "Sorry! You can't unlist a motorbike while that motorbike is being rented.\n";
@@ -288,7 +288,7 @@ void Member::searchMotorbyCity(Database &database)
     for (Motorbike &motorbike : database.getListOfMotorbikeForRent())
     {
         // Check for the city and status
-        if (motorbike.getCity() == city && motorbike.getRentStatus() == "Available")
+        if (motorbike.getCity() == city && motorbike.getRentStatus() == "Available" && motorbike.getMinRequestRating() <= request_rating)
         {
             cout << "Owner: " << motorbike.getOwner() << endl;
             cout << "Motorbike Model: " << motorbike.getModel() << endl;
@@ -297,7 +297,7 @@ void Member::searchMotorbyCity(Database &database)
             cout << "Year Made: " << motorbike.getYearMade() << endl;
             cout << "Description: " << motorbike.getDescription() << endl;
             cout << "Point Cost: " << motorbike.getPointCost() << endl;
-            cout << "Minimum Rent Rating: " << motorbike.getMinRequestRating() << endl;
+            cout << "Minimum Request Rating: " << motorbike.getMinRequestRating() << endl;
             cout << "Rent Day: " << motorbike.getRentDay() << endl;
             cout << "Location: " << motorbike.getCity() << endl;
             cout << endl;
@@ -367,6 +367,16 @@ void Member::checkAndApproveRentRequests(Database &database)
     }
 }
 
+string &Member::getUsername()
+{
+    return username;
+}
+
+string &Member::getPassword()
+{
+    return password;
+}
+
 // Admin functions
 void Admin::viewAllMembers(Database &database)
 {
@@ -382,4 +392,14 @@ void Admin::viewAllMotorbikes(Database &database)
     {
         i.viewmotorInfo();
     }
+}
+
+string &Admin::getUsername()
+{
+    return username;
+}
+
+string &Admin::getPassword()
+{
+    return password;
 }

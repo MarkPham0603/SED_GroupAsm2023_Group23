@@ -23,6 +23,8 @@ public:
         : username(adminUsername), password(adminPassword){};
     void viewAllMembers(Database &database);
     void viewAllMotorbikes(Database &database);
+    string& getUsername();
+    string& getPassword();
 };
 
 class Guest
@@ -67,6 +69,8 @@ public:
     void requestToRent(Database& database);
     void checkAndApproveRentRequests(Database &database);
     void returnRentedMotorbike(Database &database);
+    string& getUsername();
+    string& getPassword();
     friend Database;
     friend Utility;
 };

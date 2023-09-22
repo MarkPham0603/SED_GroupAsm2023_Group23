@@ -164,18 +164,20 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
     {
         while (!requests_test.eof())
         {
-            string requester, requestee, request_rating, status;
+            string requester, requestee, request_rating_temp, status;
+            int request_rating;
             getline(requests_test, test);
 
             // Get data from the file
             stringstream teststr(test);
             getline(teststr, requester, ',');
             getline(teststr, requestee, ',');
-            getline(teststr, request_rating, ',');
+            getline(teststr, request_rating_temp, ',');
+            request_rating = stoi(request_rating_temp);
             getline(teststr, status);
 
             // Create new object and add to list
-            Request request(requester, requestee, stoi(request_rating), status);
+            Request request(requester, requestee, request_rating, status);
             database.addRequestToList(request);
         }
     }
