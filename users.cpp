@@ -323,8 +323,7 @@ void Member::requestToRent(Database &database)
     string choice;
     cout << "Enter the owner that you want to rent the motorbike from, or 0 to cancel the request: ";
     getline(cin, choice);
-
-    if (int i = stoi(choice) == 0)
+    if (choice == "0")
     {
         cout << "Your request has been canceled.\n";
     }
@@ -333,10 +332,12 @@ void Member::requestToRent(Database &database)
         // Loop through the member list
         for (auto &i : database.getListOfMember())
         {
+            
             // check if the user input is match with Member user name
-            if (i.username == choice)
+            if (i.username == choice && i.request_rating >= request_rating)
             {
                 Request newRequest(username, i.username, request_rating, "Pending");
+                cout << "Request added successfully!\n";
                 database.addRequestToList(newRequest);
             }
         }
@@ -359,7 +360,7 @@ void Member::checkAndApproveRentRequests(Database &database)
     }
     cout << "Enter the user you want to approve request of, or 0 to cancel the approval process: ";
     getline(cin, choice);
-    if (stoi(choice) == 0)
+    if (choice == "0")
     {
         cout << "The approval process has been canceled.\n";
     }
@@ -372,6 +373,7 @@ void Member::checkAndApproveRentRequests(Database &database)
                 if (i.requester == choice)
                 {
                     database.acceptRequestsFromList(i);
+                    cout << "Request from " << i.requester << " has been accepted.\n";
                 }
             }
         }
