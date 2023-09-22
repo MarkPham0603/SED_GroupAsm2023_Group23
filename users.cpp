@@ -10,7 +10,7 @@ using namespace std;
 void Guest::registerAsMember(Database &database)
 {
     string username, password, fullName, phoneNumber, idType, idPassportNumber, driverLicenseNumber, expiryDate;
-    string model, transMode, description, startTime, endTime, city;
+    string model, transMode, description, rent_day, rent_status = "Available", city;
     int engineSize = 0, yearMade = 0, pointCost = 0, minRentRating = 0;
     int choice = 0;
     bool hasMotorbike = false;
@@ -57,10 +57,8 @@ void Guest::registerAsMember(Database &database)
             cin >> pointCost;
             cout << "Enter the minimum rent rating: ";
             cin >> minRentRating;
-            cout << "Enter the start time for rent: ";
-            getline(cin, startTime);
-            cout << "Enter the end time for rent: ";
-            getline(cin, endTime);
+            cout << "Enter the day and month available for rent (dd/mm): ";
+            getline(cin, rent_day);
             cout << "Enter the location: ";
             getline(cin, city);
             hasMotorbike = true;
@@ -95,8 +93,7 @@ void Guest::registerAsMember(Database &database)
             cout << "Description: " << description << endl;
             cout << "Credit point cost: " << pointCost << endl;
             cout << "Minimum rent rating: " << minRentRating << endl;
-            cout << "Start time: " << startTime << endl;
-            cout << "End time: " << endTime << endl;
+            cout << "Available day: " << rent_day << endl;
             cout << "Location: " << city << endl;
             cout << "============================================================" << endl;
         }
@@ -109,7 +106,7 @@ void Guest::registerAsMember(Database &database)
             {
                 // Create a new Motorbike and use it in the constructor of the new Member object with user inputs and add them to member list
                 Motorbike newMotorbike(username, model, engineSize, transMode, yearMade, description,
-                                       pointCost, minRentRating, startTime, endTime, city);
+                                       pointCost, minRentRating, rent_day, rent_status, city);
                 database.addMotorbikeToList(newMotorbike);
             }
 
@@ -166,7 +163,7 @@ void Member::listMotorbikeForRent(Database &database)
     }
     else
     {
-        string model, transMode, description, startTime, endTime, city;
+        string model, transMode, description, rent_day, rent_status = "Available", city;
         int engineSize = 0, yearMade = 0, pointCost = 0, minRentRating = 0;
         int choice = 0;
 
@@ -186,10 +183,8 @@ void Member::listMotorbikeForRent(Database &database)
             cin >> pointCost;
             cout << "Enter the minimum rent rating: ";
             cin >> minRentRating;
-            cout << "Enter the start time for rent: ";
-            getline(cin, startTime);
-            cout << "Enter the end time for rent: ";
-            getline(cin, endTime);
+            cout << "Enter the day and month available for rent (dd/mm): ";
+            getline(cin, rent_day);
             cout << "Enter the location: ";
             getline(cin, city);
             hasMotorbike = true;
@@ -204,8 +199,7 @@ void Member::listMotorbikeForRent(Database &database)
             cout << "Description: " << description << endl;
             cout << "Credit point cost: " << pointCost << endl;
             cout << "Minimum rent rating: " << minRentRating << endl;
-            cout << "Start time: " << startTime << endl;
-            cout << "End time: " << endTime << endl;
+            cout << "Start time: " << rent_day << endl;
             cout << "Location: " << city << endl;
             cout << "============================================================" << endl;
             cout << "Is this correct? (1 for yes, 0 for no): ";
@@ -213,7 +207,7 @@ void Member::listMotorbikeForRent(Database &database)
             if (choice == 1)
             {
                 Motorbike newMotorbike(username, model, engineSize, transMode, yearMade, description,
-                                       pointCost, minRentRating, startTime, endTime, city);
+                                       pointCost, minRentRating, rent_day, rent_status, city);
                 database.addMotorbikeToList(newMotorbike);
                 cout << "\nYour listing has been posted successfully.";
             }

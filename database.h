@@ -8,6 +8,7 @@
 using namespace std;
 
 class Member;
+class Motorbike;
 class Utility;
 
 class Database

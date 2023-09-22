@@ -11,7 +11,9 @@ using namespace std;
 
 int main()
 {
-    Shop shop("Number One");
-    shop.startScreen();
+    Database database;
+    Utility utils;
+    const string filename1 = "./lists/members.txt", filename2 = "./lists/motorbikes.txt";
+    utils.loadDataFromFile(database, filename1, filename2);
     return 0;
 }

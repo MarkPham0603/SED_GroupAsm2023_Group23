@@ -13,8 +13,8 @@ void Motorbike::viewmotorInfo()
     cout << "Description: " << description << endl;
     cout << "Credit point cost: " << pointCost << endl;
     cout << "Minimum rent rating: " << minrentRating << endl;
-    cout << "Start time: " << startTime << endl;
-    cout << "End time: " << endTime << endl;
+    cout << "Available day: " << rent_day << endl;
+    cout << "Status: " << rent_status << endl;
     cout << "Location: " << city << endl;
 }
 

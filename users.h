@@ -16,6 +16,7 @@ public:
     // User enter some personal information for register as Member
     void registerAsMember(Database& database);
     void viewAllMotorbikeForGuest(Database& database);
+    friend Utility;
 };
 
 class Member : public Guest
