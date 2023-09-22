@@ -82,7 +82,7 @@ void Shop::loginMenu(Admin &admin, Database &database)
                 }
                 break;
             case 3:
-                cout << "Login successfully as Guest.";
+                cout << "Login successfully as Guest.\n";
                 Guest guest;
                 login_success = true;
                 guestMenu(guest, database);
@@ -154,7 +154,7 @@ void Shop::guestMenu(Guest &guest, Database &database)
         cout << "2. View Motorbikes" << endl;
         cout << "0. Log out" << endl;
         cout << "============================================================" << endl;
-        cout << "\n Please enter the available options from 0 to 2: ";
+        cout << "\nPlease enter the available options from 0 to 2: ";
         cin >> guest_choice;
         cin.sync();
         switch (guest_choice)

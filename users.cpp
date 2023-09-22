@@ -226,7 +226,7 @@ void Member::listMotorbikeForRent(Database &database)
                 Motorbike newMotorbike(username, model, engineSize, transMode, yearMade, description,
                                        pointCost, minRequestRating, rent_day, rent_status, city);
                 database.addMotorbikeToList(newMotorbike);
-                cout << "\nYour listing has been posted successfully.";
+                cout << "\nYour listing has been posted successfully.\n";
             }
             else
             {
@@ -235,7 +235,7 @@ void Member::listMotorbikeForRent(Database &database)
                 cin.sync();
                 if (choice == 1)
                 {
-                    cout << "Your listing request has been canceled." << endl;
+                    cout << "Your listing request has been canceled.\n" << endl;
                 }
             }
         }
@@ -248,7 +248,7 @@ void Member::unlistMotorbike(Database &database)
     // Check if the member already has a motorbike or not
     if (!hasMotorbike)
     {
-        cout << "You don't have a motorbike listed for rent." << endl;
+        cout << "You don't have a motorbike listed for rent.\n" << endl;
     }
     else
     {
@@ -277,10 +277,10 @@ void Member::unlistMotorbike(Database &database)
                     {
                         hasMotorbike = false; // Mark that the member no longer has a listed motorbike
                         database.removeMotorbikeFromList(motorbike);
-                        cout << "Your motorbike has been unlisted." << endl;
+                        cout << "Your motorbike has been unlisted.\n" << endl;
                     }
                     else
-                        cout << "Your unlist request has been canceled." << endl;
+                        cout << "Your unlist request has been canceled.\n" << endl;
                 }
             }
         }
