@@ -5,7 +5,7 @@
 using namespace std;
 
 // Login menu for app
-void Shop::loginMenu()
+void Shop::loginMenu(Database &database)
 {
     int user_choice = 0;
     bool login_success = false;
