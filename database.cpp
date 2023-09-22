@@ -42,7 +42,7 @@ void Database::acceptRequestsFromList(Request &request)
         {
             if (i->requester == request.requester)
             {
-                i->status = "Accepted";
+                i->status = "Approved";
             }
             else
             {

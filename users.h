@@ -12,6 +12,19 @@ class Database;
 class Utility;
 class Motorbike;
 
+class Admin
+{
+private:
+    string username;
+    string password;
+public:
+    // Admin class constructor
+    Admin(const string &adminUsername, string &adminPassword)
+        : username(adminUsername), password(adminPassword){};
+    void viewAllMembers(Database &database);
+    void viewAllMotorbikes(Database &database);
+};
+
 class Guest
 {
 public:
@@ -52,21 +65,10 @@ public:
     void unlistMotorbike(Database& database);
     void searchMotorbyCity(Database &database);
     void requestToRent(Database& database);
+    void checkAndApproveRentRequests(Database &database);
+    void returnRentedMotorbike(Database &database);
     friend Database;
     friend Utility;
-};
-
-class Admin
-{
-private:
-    string username;
-    string password;
-public:
-    // Admin class constructor
-    Admin(const string &adminUsername, string &adminPassword)
-        : username(adminUsername), password(adminPassword){};
-    void viewAllMembers(Database &database);
-    void viewAllMotorbikes(Database &database);
 };
 
 #endif

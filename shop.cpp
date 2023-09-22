@@ -4,7 +4,7 @@
 #include "shop.h"
 using namespace std;
 
-void Shop::loginMenu()
+void Shop::loginMenu(Database &database)
 {
     int user_choice = 0;
     bool login_success = false;
@@ -20,21 +20,21 @@ void Shop::loginMenu()
     while (login_success == false)
     {
         cin >> user_choice;
+        cin.sync();
         switch (user_choice)
         {
         case 1:
             cout << "============================================================" << endl;
-            cout << "Enter your username:";
+            cout << "Enter your username: ";
             getline(cin, username);
-            cout << "Enter your password:";
-            getline(cin, password);
-            
+            cout << "Enter your password: ";
+            getline(cin, password);    
             break;
         case 2:
             cout << "============================================================" << endl;
-            cout << "Enter your username:";
+            cout << "Enter your username: ";
             getline(cin, username);
-            cout << "Enter your password:";
+            cout << "Enter your password: ";
             getline(cin, password);
             break;
         case 3:
@@ -48,17 +48,17 @@ void Shop::loginMenu()
     }
 }
 
-void Shop::startScreen()
+void Shop::startScreen(Database &database)
 {
     cout << "============================================================" << endl;
     cout << "EEET2482/COSC2082 GROUP ASSIGNMENT" << endl;
     cout << "MOTORBIKE RENTAL APPLICATION" << endl;
-    cout << "\n Instructor: Dr. Ling Huo Chong" << endl;
+    cout << "\nInstructor: Dr. Ling Huo Chong" << endl;
     cout << "Group: Group 23" << endl;
     cout << "s3970818, Student Name: Trinh Quang Huy" << endl;
     cout << "s3929256, Student Name: Pham Minh Hoa" << endl;
     cout << "s3938309, Student Name: Nguyen Dinh Quoc Bao" << endl;
     cout << "============================================================" << endl;
-    loginMenu();
+    loginMenu(database);
 }
 

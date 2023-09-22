@@ -9,7 +9,7 @@
 #include "request.h"
 using namespace std;
 
-void Utility::saveDataToFile(Database &database, string &data_type, const string &filename1, const string &filename2, const string &filename3)
+void Utility::saveDataToFile(Database &database, const string &filename1, const string &filename2, const string &filename3)
 {
     ofstream member_test(filename1), motorbike_test(filename2), requests_test(filename3);
 
@@ -154,16 +154,16 @@ void Utility::loadDataFromFile(Database &database, const string &filename1, cons
     {
         while (!requests_test.eof())
         {
-            string requester, requestee, status;
+            string requester, requestee, request_rating, status;
             getline(requests_test, test);
 
             stringstream teststr(test);
             getline(teststr, requester, ',');
             getline(teststr, requestee, ',');
-            getline(teststr, status, ',');
-
-            Request request(requester, requestee, status);
-            database.addMotorbikeToList(motorbike);
+            getline(teststr, request_rating, ',');
+            getline(teststr, status);
+            Request request(requester, requestee, stoi(request_rating), status);
+            database.addRequestToList(request);
         }
     }
     else

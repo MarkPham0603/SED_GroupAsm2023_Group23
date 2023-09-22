@@ -3,7 +3,10 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include "database.h"
 using namespace std;
+
+class Database;
 
 class Shop
 {
@@ -18,8 +21,8 @@ public:
     {
         name.clear();
     }
-    void startScreen();
-    void loginMenu(); 
+    void startScreen(Database &database);
+    void loginMenu(Database &database); 
 };
 
 #endif

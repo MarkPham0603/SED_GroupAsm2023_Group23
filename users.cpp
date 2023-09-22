@@ -309,22 +309,61 @@ void Member::requestToRent(Database &database)
         {
             if (i.username == choice)
             {
-                Request newRequest(username, i.username, "Pending");
+                Request newRequest(username, i.username, request_rating, "Pending");
                 database.addRequestToList(newRequest);
             }
         }
     }
-        
 }
 
+void Member::checkAndApproveRentRequests(Database &database)
+{
+    string choice;
+    cout << "List of requests" << endl;
+    cout << "----------------" << endl;
+    for (auto &i : database.getListOfRequest())
+    {
+        if (i.requestee == username)
+        {
+            cout << i.requester << endl;
+            cout << i.requester_rating << endl;
+            cout << '\n';
+        }
+    }
+    cout << "Enter the user you want to approve request of, or 0 to cancel the approval process: ";
+    getline(cin, choice);
+    if (stoi(choice) == 0)
+    {
+        cout << "The approval process has been canceled.\n";
+    }
+    else
+    {
+        for (auto &i : database.getListOfRequest())
+        {
+            if (i.requestee == username)
+            {
+                if (i.requester == choice)
+                {
+                    database.acceptRequestsFromList(i);
+                }
+            }
+        }
+    }
+}
 
 // Admin functions
 void Admin::viewAllMembers(Database &database)
 {
-    database.getListOfMember();
+    for (auto &i : database.getListOfMember())
+    {
+        i.viewInformation();
+    }
 }
 
 void Admin::viewAllMotorbikes(Database &database)
 {
-    database.getListOfMotorbikeForRent();
+    for (auto &i : database.getListOfMotorbikeForRent())
+    {
+        i.viewmotorInfo();
+    }
 }
