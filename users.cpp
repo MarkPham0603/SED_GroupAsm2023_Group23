@@ -324,7 +324,7 @@ void Member::requestToRent(Database &database)
     cout << "Enter the owner that you want to rent the motorbike from, or 0 to cancel the request: ";
     getline(cin, choice);
 
-    if (stoi(choice) == 0)
+    if (int i = stoi(choice) == 0)
     {
         cout << "Your request has been canceled.\n";
     }
