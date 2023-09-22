@@ -19,6 +19,7 @@ public:
     //Database functions declarations
     void addMemberToList(Member &new_member);
     void addMotorbikeToList(Motorbike &new_motorbike);
+    vector<Motorbike>& getListOfMotorbikeForRent();
     void viewAllMotorbikeForGuest();
     friend Utility;
 };

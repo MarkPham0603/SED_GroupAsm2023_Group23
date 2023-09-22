@@ -6,11 +6,20 @@ using namespace std;
 // View motorbike models
 void Motorbike::viewmotorInfo()
 {
-    cout << "Motorbike Model: " << model << endl;
-    cout << "Engine Size: " << engineSize << endl;
-    cout << "Transmission Model: " << transMode << endl;
-    cout << "Production Year: " << yearMade << endl;
+    cout << "Model: " << model << endl;
+    cout << "Engine size: " << engineSize << endl;
+    cout << "Transmission mode: " << transMode << endl;
+    cout << "Manufactured year: " << yearMade << endl;
     cout << "Description: " << description << endl;
-    cout << "Point Cost: " << pointCost << endl;
+    cout << "Credit point cost: " << pointCost << endl;
+    cout << "Minimum rent rating: " << minrentRating << endl;
+    cout << "Start time: " << startTime << endl;
+    cout << "End time: " << endTime << endl;
     cout << "Location: " << city << endl;
+}
+
+// Get owner's username
+string &Motorbike::getUsername()
+{
+    return username;
 }

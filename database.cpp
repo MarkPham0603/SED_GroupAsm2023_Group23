@@ -18,6 +18,12 @@ void Database::addMotorbikeToList(Motorbike &new_motorbike)
     listOfMotorbikeForRent.push_back(new_motorbike);
 }
 
+// Define getListOfMotorbikeForRent
+vector<Motorbike>& Database::getListOfMotorbikeForRent()
+{
+    return listOfMotorbikeForRent;
+}
+
 // Define viewAllMotorbikeForGuest
 void Database::viewAllMotorbikeForGuest()
 {

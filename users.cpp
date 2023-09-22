@@ -108,19 +108,14 @@ void Guest::registerAsMember(Database &database)
             if (hasMotorbike)
             {
                 // Create a new Motorbike and use it in the constructor of the new Member object with user inputs and add them to member list
-                Motorbike newMotorbike(model, engineSize, transMode, yearMade, description,
+                Motorbike newMotorbike(username, model, engineSize, transMode, yearMade, description,
                                        pointCost, minRentRating, startTime, endTime, city);
-                Member newMember(username, password, fullName, phoneNumber,
-                                 idType, idPassportNumber, driverLicenseNumber, expiryDate, 20, newMotorbike, hasMotorbike);
-                database.addMemberToList(newMember);
+                database.addMotorbikeToList(newMotorbike);
             }
-            else
-            {
-                // Create a new Member object that contain the user input and add them to the member list
-                Member newMember(username, password, fullName, phoneNumber,
-                                 idType, idPassportNumber, driverLicenseNumber, expiryDate, 20);
-                database.addMemberToList(newMember);
-            }
+
+            Member newMember(username, password, fullName, phoneNumber,
+                             idType, idPassportNumber, driverLicenseNumber, expiryDate, 20, hasMotorbike);
+            database.addMemberToList(newMember);
 
             // Display success message and set flag to exit the loop
             cout << "Registration successful. Welcome, " << username << "!" << endl;
@@ -151,21 +146,23 @@ void Member::viewInformation()
     cout << "Driver's License Number: " << driverLicenseNumber << endl;
     cout << "Expiry Date: " << expiryDate << endl;
     cout << "Credit Points: " << creditPoints << endl;
-    if (hasMotorbike)
-    {
-        cout << "============================================================" << endl;
-        cout << "Your motorbike information" << endl;
-        cout << "--------------------------" << endl;
-        motorbike.viewmotorInfo();
-    }
+    cout << "Has motorbike for rent: " << hasMotorbike << endl;
 }
 
-void Member::listMotorbikeForRent(Database& database)
+void Member::listMotorbikeForRent(Database &database)
 {
     if (hasMotorbike)
     {
         cout << "You already have a motorbike listed for rent." << endl;
-        motorbike.viewmotorInfo();
+        for (auto &motorbike : database.getListOfMotorbikeForRent())
+        {
+            if (motorbike.getUsername() == username)
+            {
+                cout << "Your motorbike information" << endl;
+                cout << "--------------------------" << endl;
+                motorbike.viewmotorInfo();
+            }
+        }
     }
     else
     {
@@ -213,17 +210,27 @@ void Member::listMotorbikeForRent(Database& database)
             cout << "============================================================" << endl;
             cout << "Is this correct? (1 for yes, 0 for no): ";
             cin >> choice;
-        }
-
-        Motorbike newMotorbike(model, engineSize, transMode, yearMade, description,
+            if (choice == 1)
+            {
+                Motorbike newMotorbike(username, model, engineSize, transMode, yearMade, description,
                                        pointCost, minRentRating, startTime, endTime, city);
-        motorbike = newMotorbike;
-        database.addMotorbikeToList(motorbike);
-        cout << "\nYour listing has been posted successfully.";
+                database.addMotorbikeToList(newMotorbike);
+                cout << "\nYour listing has been posted successfully.";
+            }
+            else
+            {
+                cout << "Do you want to quit? (1 for yes, 0 for no): ";
+                cin >> choice;
+                if (choice == 1)
+                {
+                    cout << "Your listing request has been canceled." << endl;
+                }
+            }
+        }
     }
 }
 
-void Member::unlistMotorbike()
+void Member::unlistMotorbike(Database &database)
 {
     if (!hasMotorbike)
     {
@@ -231,9 +238,25 @@ void Member::unlistMotorbike()
     }
     else
     {
-        cout << "Unlisting your Motorbike for Rent:" << endl;
-        motorbike.viewmotorInfo(); // Display the details of the motorbike being unlisted
-        hasMotorbike = false;      // Mark that the member no longer has a listed motorbike
-        cout << "Your motorbike has been unlisted." << endl;
+        for (auto &motorbike : database.getListOfMotorbikeForRent())
+        {
+            if (motorbike.getUsername() == username)
+            {
+                int choice;
+
+                cout << "Your motorbike information" << endl;
+                cout << "--------------------------" << endl;
+                motorbike.viewmotorInfo();
+                cout << "Do you want to unlist this motorbike (1 for yes, 0 for no): ";
+                cin >> choice;
+                if (choice == 1)
+                {
+                    hasMotorbike = false; // Mark that the member no longer has a listed motorbike
+                    cout << "Your motorbike has been unlisted." << endl;
+                }
+                else
+                    cout << "Your unlist request has been canceled." << endl;
+            }
+        }
     }
 }

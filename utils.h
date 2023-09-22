@@ -11,7 +11,7 @@ class Database;
 class Utility
 {
 public:
-    void saveDataToFile(ofstream &ofs, Database &database, string &file_name, string &data_type);
+    void saveDataToFile(ofstream &ofs, Database &database, string &data_type);
     void loadDataFromFile(string file_name);
     void checkInput(string input);
     void error_handling();

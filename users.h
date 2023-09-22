@@ -30,7 +30,6 @@ private:
     string driverLicenseNumber;
     string expiryDate;
     int creditPoints;
-    Motorbike motorbike;
     bool hasMotorbike;
 
 public:
@@ -38,14 +37,14 @@ public:
     Member(const string &username = "", const string &password = "",
            const string &fullName = "", const string &phoneNumber = "", const string &idType = "", const string &idPassportNumber = "",
            const string &driverLicenseNumber = "", const string &expiryDate = "",
-           const int creditPoints = 0, const Motorbike &motorbike = Motorbike(), const bool hasMotorbike = false)
+           const int creditPoints = 0, const bool hasMotorbike = false)
         : username(username), password(password),
           fullName(fullName), phoneNumber(phoneNumber), idType(idType), idPassportNumber(idPassportNumber),
           driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate),
-          creditPoints(creditPoints), motorbike(motorbike), hasMotorbike(hasMotorbike){};
+          creditPoints(creditPoints), hasMotorbike(hasMotorbike){};
     void viewInformation();
     void listMotorbikeForRent(Database& database);
-    void unlistMotorbike();
+    void unlistMotorbike(Database& database);
     friend Database;
     friend Utility;
 };
