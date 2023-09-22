@@ -19,7 +19,7 @@ void Motorbike::viewmotorInfo()
 }
 
 // Get owner's username
-string &Motorbike::getUsername()
+string &Motorbike::getOwner()
 {
-    return username;
+    return owner;
 }

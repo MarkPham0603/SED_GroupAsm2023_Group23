@@ -1,5 +1,5 @@
-user_2,2023 Ninja H2R,998,6-speed return dog-ring,2023,Absolute Domination,6,7,23/09,Rented,Amherst
+user_2,2023 Ninja H2R,998,6-speed return dog-ring,2023,Absolute Domination,6,7,23/09,Available,Amherst
 user_4,S 1000 XR,999,6-speed synchromesh with spurs,2022,The Challenge of Curves and Miles,7,5,21/09,Available,Ho Chi Minh
 user_1,Air Blade 125,124,4-speed,2020,AirBlade Beast,2,4,25/09,Available,Ha Noi
 user_5,XT 250,249,5-speed wet clutch,2022,Go Anywhere Duel Sport,4,4,10/09,Available,Barcelona
-user_3,X5-23,59,4-speed,2023,Screw it lets go,4,6,09/10,Rented,Hai Phong
+user_3,X5-23,59,4-speed,2023,Screw it lets go,4,6,09/10,Available,Hai Phong

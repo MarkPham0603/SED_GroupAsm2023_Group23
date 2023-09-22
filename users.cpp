@@ -153,7 +153,7 @@ void Member::listMotorbikeForRent(Database &database)
         cout << "You already have a motorbike listed for rent." << endl;
         for (auto &motorbike : database.getListOfMotorbikeForRent())
         {
-            if (motorbike.getUsername() == username)
+            if (motorbike.getOwner() == username)
             {
                 cout << "Your motorbike information" << endl;
                 cout << "--------------------------" << endl;
@@ -234,7 +234,7 @@ void Member::unlistMotorbike(Database &database)
     {
         for (auto &motorbike : database.getListOfMotorbikeForRent())
         {
-            if (motorbike.getUsername() == username)
+            if (motorbike.getOwner() == username)
             {
                 int choice;
 

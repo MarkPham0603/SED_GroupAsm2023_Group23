@@ -33,7 +33,7 @@ void Utility::saveDataToFile(Database &database, string &data_type)
 
         for (size_t i = 0; i < database.listOfMotorbikeForRent.capacity(); i++)
         {
-            motorbike_test << database.listOfMotorbikeForRent[i].username << ',' << 
+            motorbike_test << database.listOfMotorbikeForRent[i].owner << ',' << 
             database.listOfMotorbikeForRent[i].model << ',' << 
             database.listOfMotorbikeForRent[i].engineSize << ',' << 
             database.listOfMotorbikeForRent[i].transMode << ',' << 
