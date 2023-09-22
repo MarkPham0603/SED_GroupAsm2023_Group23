@@ -3,6 +3,7 @@
 #include "motorbike.h"
 #include "database.h"
 #include "users.h"
+#include "request.h"
 using namespace std;
 
 // Define Guest class functions
@@ -262,12 +263,11 @@ void Member::unlistMotorbike(Database &database)
     }
 }
 
-vector<Motorbike>& Member::searchMotorbyCity(Database &database)
+void Member::searchMotorbyCity(Database &database)
 {
     string city;
     cout << "Enter the city to search for available motorbikes: ";
     cin >> city;
-    vector<Motorbike> available_motorbikes;
 
     // Display available motorbikes in the specified city
     cout << "Available motorbikes in " << city << ":" << endl;
@@ -278,7 +278,7 @@ vector<Motorbike>& Member::searchMotorbyCity(Database &database)
         if (motorbike.getCity() == city && motorbike.getRentStatus() == "Available")
         {
             cout << "Owner: " << motorbike.getOwner() << endl;
-            cout << "Motorbike Name: " << motorbike.getModel() << endl;
+            cout << "Motorbike Model: " << motorbike.getModel() << endl;
             cout << "Engine Size: " << motorbike.getEngineSize() << "cc" << endl;
             cout << "Transmission Model: " << motorbike.getTransMode() << endl;
             cout << "Year Made: " << motorbike.getYearMade() << endl;
@@ -288,10 +288,43 @@ vector<Motorbike>& Member::searchMotorbyCity(Database &database)
             cout << "Rent Day: " << motorbike.getRentDay() << endl;
             cout << "Location: " << motorbike.getCity() << endl;
             cout << endl;
-            available_motorbikes.push_back(motorbike);
         }
     }
-    return available_motorbikes;
+}
+
+void Member::requestToRent(Database &database)
+{
+    string choice;
+    searchMotorbyCity(database);
+    cout << "Enter the owner that you want to rent the motorbike from, or 0 to cancel the request: ";
+    getline(cin, choice);
+
+    if (stoi(choice) == 0)
+    {
+        cout << "Your request has been canceled.\n";
+    }
+    else
+    {
+        for (auto &i : database.getListOfMember())
+        {
+            if (i.username == choice)
+            {
+                Request newRequest(username, i.username, "Pending");
+                database.addRequestToList(newRequest);
+            }
+        }
+    }
+        
 }
 
 
+// Admin functions
+void Admin::viewAllMembers(Database &database)
+{
+    database.getListOfMember();
+}
+
+void Admin::viewAllMotorbikes(Database &database)
+{
+    database.getListOfMotorbikeForRent();
+}

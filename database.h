@@ -11,6 +11,7 @@ using namespace std;
 class Member;
 class Motorbike;
 class Utility;
+class Request;
 
 class Database
 {
@@ -23,6 +24,8 @@ public:
     void addMemberToList(Member &new_member);
     void addMotorbikeToList(Motorbike &new_motorbike);
     void removeMotorbikeFromList(Motorbike &motorbike);
+    void addRequestToList(Request &request);
+    void acceptRequestsFromList(Request &request);
     vector<Motorbike>& getListOfMotorbikeForRent();
     vector<Member>& getListOfMember();
     vector<Request>& getListOfRequest();

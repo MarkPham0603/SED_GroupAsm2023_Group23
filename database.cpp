@@ -29,22 +29,44 @@ void Database::removeMotorbikeFromList(Motorbike &motorbike)
     }
 }
 
+void Database::addRequestToList(Request &request)
+{
+    listOfRequests.push_back(request);
+}
+
+void Database::acceptRequestsFromList(Request &request)
+{
+    for (auto i = listOfRequests.begin(); i != listOfRequests.end(); i++)
+    {
+        if (i->requestee == request.requestee)
+        {
+            if (i->requester == request.requester)
+            {
+                i->status = "Accepted";
+            }
+            else
+            {
+                listOfRequests.erase(i);
+            }
+        }
+    }
+}
+
 // Define getListOfMotorbikeForRent
-vector<Motorbike>& Database::getListOfMotorbikeForRent()
+vector<Motorbike> &Database::getListOfMotorbikeForRent()
 {
     return listOfMotorbikeForRent;
 }
 
-vector<Member>& Database::getListOfMember()
+vector<Member> &Database::getListOfMember()
 {
     return listOfMember;
 }
 
-vector<Request>& Database::getListOfRequest()
+vector<Request> &Database::getListOfRequest()
 {
     return listOfRequests;
 }
-
 
 // Define viewAllMotorbikeForGuest
 void Database::viewAllMotorbikeForGuest()

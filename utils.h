@@ -10,13 +10,14 @@ using namespace std;
 
 class Database;
 class Member;
-class Motorbike; 
+class Motorbike;
+class Request;
 
 class Utility
 {
 public:
-    void saveDataToFile(Database &database, string &data_type);
-    void loadDataFromFile(Database &database, const string &file_name1, const string &filename2);
+    void saveDataToFile(Database &database, string &data_type, const string &filename1, const string &filename2, const string &filename3);
+    void loadDataFromFile(Database &database, const string &filename1, const string &filename2, const string &filename3);
 };
 
 #endif

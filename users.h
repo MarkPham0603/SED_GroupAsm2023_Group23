@@ -5,10 +5,12 @@
 #include "motorbike.h"
 #include "database.h"
 #include "utils.h"
+#include "request.h"
 using namespace std;
 
 class Database;
 class Utility;
+class Motorbike;
 
 class Guest
 {
@@ -44,11 +46,12 @@ public:
         : username(username), password(password),
           fullName(fullName), phoneNumber(phoneNumber), idType(idType), idPassportNumber(idPassportNumber),
           driverLicenseNumber(driverLicenseNumber), expiryDate(expiryDate),
-          creditPoints(creditPoints), hasMotorbike(hasMotorbike){};
+          creditPoints(creditPoints), rent_rating(rent_rating), request_rating(request_rating), hasMotorbike(hasMotorbike){};
     void viewInformation();
     void listMotorbikeForRent(Database& database);
     void unlistMotorbike(Database& database);
-    vector<Motorbike>& searchMotorbyCity(Database &database);
+    void searchMotorbyCity(Database &database);
+    void requestToRent(Database& database);
     friend Database;
     friend Utility;
 };
@@ -62,6 +65,8 @@ public:
     // Admin class constructor
     Admin(const string &adminUsername, string &adminPassword)
         : username(adminUsername), password(adminPassword){};
+    void viewAllMembers(Database &database);
+    void viewAllMotorbikes(Database &database);
 };
 
 #endif
